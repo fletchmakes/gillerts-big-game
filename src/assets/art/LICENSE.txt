@@ -2,4 +2,4 @@ Copyright (c) 2023 Kraaico
 
 All rights reserved.
 
-Under no circumstances may any files in the same directory as this license (or its subdirectories) be modified, redistributed, or used in any way. 
+Under no circumstances may any files in the same directory as this license (or its subdirectories) be modified, redistributed, or used in any way, without explicit consent by the copyright holder. 
