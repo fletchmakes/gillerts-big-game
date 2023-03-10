@@ -20,61 +20,36 @@
 -- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 -- SOFTWARE.
 
+
 local Flux = require "libs.flux.flux"
 local Plan = require "libs.plan.plan"
 local Rules = Plan.Rules
 
 local Container = Plan.Container
-local GameView = Container:extend()
+local Scene1 = Container:extend()
 
 local COLORS = require "utils.Colors"
-local MainMenu = require "scenes.MainMenu"
 
-function GameView:new(rules)
+function Scene1:init(rules)
     -- initialises all the container fields
-    local gameView = GameView.super.new(self, rules)
+    local view = Scene1.super.new(self, rules)
 
-    gameView.rules = Rules.new()
-        :addX(Plan.relative(0))
-        :addY(Plan.relative(0))
-        :addWidth(Plan.relative(1))
-        :addHeight(Plan.relative(1))
-
-    gameView.scene = MainMenu:init(rules, gameView)
-    gameView:addChild(gameView.scene)
-
-    return gameView
+    view.font = love.graphics.newFont("assets/art/WindstilChonker-Regular.ttf", 60)
+    
+    return view
 end
 
-function GameView:keypressed(key, scancode, isrepeat)
+function Scene1:update( dt )
 
 end
 
-function GameView:switchScene(scene)
-    self:removeChild(self.scene)
-    self.scene = scene
-    self:addChild(self.scene)
-end
-
-function GameView:refresh()
-    -- refresh for all of the children components
-    GameView.super.refresh(self)
-end
-
-function GameView:update( dt )
-    -- update for all of the children components
-    GameView.super.update( self, dt )
-end
-
-function GameView:draw()
+function Scene1:draw()
     love.graphics.push("all")
-        local color = COLORS.colorFromHex("#000000")
-        love.graphics.setColor(color)
-        love.graphics.rectangle("fill", self.x, self.y, self.w, self.h)
-    love.graphics.pop()
+        love.graphics.setFont(self.font)
+        love.graphics.setColor(COLORS.colorFromHex("#FFFFFF"))
 
-    -- then we want to draw our children containers:
-    GameView.super.draw(self)
+        love.graphics.print("scene 1")
+    love.graphics.pop()
 end
 
-return GameView
+return Scene1

@@ -22,7 +22,7 @@
 
 
 -- inspo taken from: https://love2d.org/forums/viewtopic.php?t=9395
-function colorToHex(hex)
+function colorFromHex(hex)
     local splitToRGB = {}
     
     -- check for leading pound
@@ -40,5 +40,5 @@ function colorToHex(hex)
 end
 
 return {
-    colorToHex = colorToHex
+    colorFromHex = colorFromHex
 }
