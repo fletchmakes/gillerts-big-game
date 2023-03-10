@@ -38,6 +38,7 @@ function Button:new(text, x, y, action)
     button.textY = 0
     button.fillMode = "line"
     button.textColor = "#FFFFFF"
+    button.isPressed = false
 
     button.font = love.graphics.newFont("assets/art/WindstilChonker-Regular.ttf", 50)
 
@@ -70,21 +71,32 @@ function Button:update( dt )
             self.fillMode = "fill"
             self.textColor = "#615a7d"
 
-        if (love.mouse.isDown(1)) then
+        if (love.mouse.isDown(1) and not self.isPressed) then
             self.action()
+            self.isPressed = true
         end
     else
             self.fillMode = "line"
             self.textColor = "#FFFFFF"
     end
+
+    if (not love.mouse.isDown(1)) then
+        self.isPressed = false
+    end
 end
 
 function Button:draw()
     love.graphics.push("all")
+        -- text bg
+        love.graphics.setColor(COLORS.colorFromHex("#00000060"))
+        love.graphics.rectangle("fill", self.x, self.y, self.width, self.height, 10)
+
+        -- rectangle
         love.graphics.setLineWidth(5)
         love.graphics.setColor(COLORS.colorFromHex("#FFFFFF"))
         love.graphics.rectangle(self.fillMode, self.x, self.y, self.width, self.height, 10)
 
+        -- text
         love.graphics.setFont(self.font)
         love.graphics.setColor(COLORS.colorFromHex(self.textColor))
         love.graphics.print(self.text, self.textX, self.textY)

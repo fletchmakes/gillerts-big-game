@@ -46,10 +46,6 @@ function GameView:new(rules)
     return gameView
 end
 
-function GameView:keypressed(key, scancode, isrepeat)
-
-end
-
 function GameView:switchScene(scene)
     self:removeChild(self.scene)
     self.scene = scene

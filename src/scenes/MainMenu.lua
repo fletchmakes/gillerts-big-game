@@ -30,13 +30,14 @@ local MainMenu = Container:extend()
 
 local COLORS = require "utils.Colors"
 local Button = require "components.Button"
-local Scene1 = require "scenes.Scene1"
+local Introduction = require "scenes.Introduction"
 
 function MainMenu:init(rules, parent)
     -- initialises all the container fields
     local view = MainMenu.super.new(self, rules)
 
     view.font = love.graphics.newFont("assets/art/WindstilChonker-Regular.ttf", 90)
+    view.littleFont = love.graphics.newFont("assets/art/WindstilChonker-Regular.ttf", 30)
     view.bgImage = love.graphics.newImage("assets/art/classroom.png")
 
     view.scaleX = love.graphics.getWidth() / view.bgImage:getWidth()
@@ -47,7 +48,7 @@ function MainMenu:init(rules, parent)
     view.titleY = 0
 
     local playButtonAction = function()
-        local nextScene = Scene1:init(rules)
+        local nextScene = Introduction:init(rules)
         parent:switchScene(nextScene)
     end
 
@@ -67,12 +68,21 @@ end
 
 function MainMenu:draw()
     love.graphics.push("all")
+        -- bg image
         love.graphics.draw(self.bgImage, 0, 0, 0, self.scaleX, self.scaleY)
 
+        -- text bg
+        love.graphics.setColor(COLORS.colorFromHex("#00000060"))
+        love.graphics.rectangle("fill", 0, self.titleY - 10, love.graphics.getWidth(), self.font:getHeight() + 10)
+
+        -- text
         love.graphics.setFont(self.font)
         love.graphics.setColor(COLORS.colorFromHex("#FFFFFF"))
-
         love.graphics.print(self.title, self.titleX, self.titleY)
+
+        -- credits
+        love.graphics.setFont(self.littleFont)
+        love.graphics.print("Created by: fletch, kraaico, leiss", 10, love.graphics.getHeight() - self.littleFont:getHeight() - 10)
 
         self.playButton:draw()
     love.graphics.pop()
