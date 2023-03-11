@@ -40,7 +40,7 @@ function Button:new(text, x, y, action)
     button.textColor = "#FFFFFF"
     button.isPressed = false
 
-    button.font = love.graphics.newFont("assets/art/WindstilChonker-Regular.ttf", 50)
+    button.font = love.graphics.newFont("assets/art/WindstilChonker-Regular.ttf", 40)
 
     button.action = action
 
@@ -62,7 +62,7 @@ end
 
 function Button:update( dt )
     self.textX = ((self.width / 2) - (self.font:getWidth(self.text) / 2)) + self.x
-    self.textY = ((self.height / 2) - (self.font:getHeight() / 2)) + self.y
+    self.textY = ((self.height / 2) - (self.font:getHeight() / 2)) + self.y + 6
 
     local mouseX, mouseY = love.mouse.getPosition()
 

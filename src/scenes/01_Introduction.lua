@@ -38,8 +38,6 @@ function Introduction:init(rules)
     view.font = love.graphics.newFont("assets/art/WindstilChonker-Regular.ttf", 40)
 
     view.bgImage = love.graphics.newImage("assets/art/classroom.png")
-    view.scaleX = love.graphics.getWidth() / view.bgImage:getWidth()
-    view.scaleY = love.graphics.getHeight() / view.bgImage:getHeight()
 
     view.gillertBlack = love.graphics.newImage("assets/art/gillert-black.png")
     view.gillert = love.graphics.newImage("assets/art/gillert.png")
@@ -49,8 +47,6 @@ function Introduction:init(rules)
     view.text = {
         "This is the story of Gillert.",
         "Who is Gillert?",
-        "Gillert is a young friend who was an outcast in their school.",
-        "They were outcast because they did not fit in.",
         "Born to two mermaid parents, Gillert's genes somehow got swapped.",
         "And thus, the first reverse-mermaid was born."
     }
@@ -73,7 +69,7 @@ end
 function Introduction:update( dt )
     self.nextButton:update(dt)
 
-    if (self.textIdx == 6) then
+    if (self.textIdx == 4) then
         self.gillertVersion = self.gillert
     end
 end
@@ -81,12 +77,12 @@ end
 function Introduction:draw()
     love.graphics.push("all")
         -- bg image
-        love.graphics.draw(self.bgImage, 0, 0, 0, self.scaleX, self.scaleY)
+        love.graphics.draw(self.bgImage)
 
         -- gillert
-        local imageX = (love.graphics.getWidth() / 2) - (self.gillertBlack:getWidth() / 4)
-        local imageY = (love.graphics.getHeight() / 2) - (self.gillertBlack:getHeight() / 4) + 40
-        love.graphics.draw(self.gillertVersion, imageX, imageY, 0, 0.5, 0.5)
+        local imageX = (love.graphics.getWidth() / 2) - (self.gillertBlack:getWidth() / 2)
+        local imageY = (love.graphics.getHeight() / 2) - (self.gillertBlack:getHeight() / 2) + 40
+        love.graphics.draw(self.gillertVersion, imageX, imageY)
 
         -- text bg
         love.graphics.setColor(COLORS.colorFromHex("#00000060"))

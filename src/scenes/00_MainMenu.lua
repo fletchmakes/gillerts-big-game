@@ -30,7 +30,7 @@ local MainMenu = Container:extend()
 
 local COLORS = require "utils.Colors"
 local Button = require "components.Button"
-local Introduction = require "scenes.Introduction"
+local Introduction = require "scenes.01_Introduction"
 
 function MainMenu:init(rules, parent)
     -- initialises all the container fields
@@ -39,9 +39,6 @@ function MainMenu:init(rules, parent)
     view.font = love.graphics.newFont("assets/art/WindstilChonker-Regular.ttf", 90)
     view.littleFont = love.graphics.newFont("assets/art/WindstilChonker-Regular.ttf", 30)
     view.bgImage = love.graphics.newImage("assets/art/classroom.png")
-
-    view.scaleX = love.graphics.getWidth() / view.bgImage:getWidth()
-    view.scaleY = love.graphics.getHeight() / view.bgImage:getHeight()
 
     view.title = "Gillert's Big Game"
     view.titleX = 0
@@ -69,7 +66,7 @@ end
 function MainMenu:draw()
     love.graphics.push("all")
         -- bg image
-        love.graphics.draw(self.bgImage, 0, 0, 0, self.scaleX, self.scaleY)
+        love.graphics.draw(self.bgImage)
 
         -- text bg
         love.graphics.setColor(COLORS.colorFromHex("#00000060"))

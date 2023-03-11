@@ -28,7 +28,7 @@ local Container = Plan.Container
 local GameView = Container:extend()
 
 local COLORS = require "utils.Colors"
-local MainMenu = require "scenes.MainMenu"
+local MainMenu = require "scenes.00_MainMenu"
 local AudioManager = require "components.AudioManager"
 
 function GameView:new(rules)
