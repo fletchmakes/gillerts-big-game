@@ -82,7 +82,7 @@ function MainMenu:draw()
 
         -- credits
         love.graphics.setFont(self.littleFont)
-        love.graphics.print("Created by: fletch, kraaico, leiss", 10, love.graphics.getHeight() - self.littleFont:getHeight() - 10)
+        love.graphics.print("Created by: fletch, mrs fletch, kraaico, leiss", 10, love.graphics.getHeight() - self.littleFont:getHeight() - 10)
 
         self.playButton:draw()
     love.graphics.pop()

@@ -29,6 +29,7 @@ local GameView = Container:extend()
 
 local COLORS = require "utils.Colors"
 local MainMenu = require "scenes.MainMenu"
+local AudioManager = require "components.AudioManager"
 
 function GameView:new(rules)
     -- initialises all the container fields
@@ -42,6 +43,9 @@ function GameView:new(rules)
 
     gameView.scene = MainMenu:init(rules, gameView)
     gameView:addChild(gameView.scene)
+
+    gameView.audioManager = AudioManager:new()
+    gameView.audioManager:play()
 
     return gameView
 end
