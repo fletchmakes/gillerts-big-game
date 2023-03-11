@@ -32,6 +32,7 @@ function Button:new(text, x, y, action)
     button.text = text
     button.x = x
     button.y = y
+    button.offset = 0
     button.width = 200
     button.height = 75
     button.textX = 0
@@ -58,12 +59,16 @@ end
 function Button:setPosition(x, y)
     self.x = x
     self.y = y
+    
+    self.textX = ((self.width / 2) - (self.font:getWidth(self.text) / 2)) + self.x
+    self.textY = ((self.height / 2) - (self.font:getHeight() / 2)) + self.y + 6
+end
+
+function Button:setOffset(offset)
+    self.offset = offset
 end
 
 function Button:update( dt )
-    self.textX = ((self.width / 2) - (self.font:getWidth(self.text) / 2)) + self.x
-    self.textY = ((self.height / 2) - (self.font:getHeight() / 2)) + self.y + 6
-
     local mouseX, mouseY = love.mouse.getPosition()
 
     if (mouseX > self.x and mouseX < self.x + self.width and
@@ -89,17 +94,17 @@ function Button:draw()
     love.graphics.push("all")
         -- text bg
         love.graphics.setColor(COLORS.colorFromHex("#00000060"))
-        love.graphics.rectangle("fill", self.x, self.y, self.width, self.height, 10)
+        love.graphics.rectangle("fill", self.x + self.offset, self.y, self.width, self.height, 10)
 
         -- rectangle
         love.graphics.setLineWidth(5)
         love.graphics.setColor(COLORS.colorFromHex("#FFFFFF"))
-        love.graphics.rectangle(self.fillMode, self.x, self.y, self.width, self.height, 10)
+        love.graphics.rectangle(self.fillMode, self.x + self.offset, self.y, self.width, self.height, 10)
 
         -- text
         love.graphics.setFont(self.font)
         love.graphics.setColor(COLORS.colorFromHex(self.textColor))
-        love.graphics.print(self.text, self.textX, self.textY)
+        love.graphics.print(self.text, self.textX + self.offset, self.textY)
     love.graphics.pop()
 end
 

@@ -36,6 +36,8 @@ function MainMenu:init(rules, parent)
     -- initialises all the container fields
     local view = MainMenu.super.new(self, rules)
 
+    view.offset = 0
+
     view.font = love.graphics.newFont("assets/art/WindstilChonker-Regular.ttf", 90)
     view.littleFont = love.graphics.newFont("assets/art/WindstilChonker-Regular.ttf", 30)
     view.bgImage = love.graphics.newImage("assets/art/classroom.png")
@@ -56,6 +58,11 @@ function MainMenu:init(rules, parent)
     return view
 end
 
+function MainMenu:setOffset(offset)
+    self.offset = offset
+    self.playButton:setOffset(offset)
+end
+
 function MainMenu:update( dt )
     self.titleX = (love.graphics.getWidth() / 2) - (self.font:getWidth(self.title) / 2)
     self.titleY = (love.graphics.getHeight() / 2) - (self.font:getHeight() / 2)
@@ -66,20 +73,20 @@ end
 function MainMenu:draw()
     love.graphics.push("all")
         -- bg image
-        love.graphics.draw(self.bgImage)
+        love.graphics.draw(self.bgImage, self.offset)
 
         -- text bg
         love.graphics.setColor(COLORS.colorFromHex("#00000060"))
-        love.graphics.rectangle("fill", 0, self.titleY - 10, love.graphics.getWidth(), self.font:getHeight() + 10)
+        love.graphics.rectangle("fill", self.offset, self.titleY - 10, love.graphics.getWidth(), self.font:getHeight() + 10)
 
         -- text
         love.graphics.setFont(self.font)
         love.graphics.setColor(COLORS.colorFromHex("#FFFFFF"))
-        love.graphics.print(self.title, self.titleX, self.titleY)
+        love.graphics.print(self.title, self.titleX + self.offset, self.titleY)
 
         -- credits
         love.graphics.setFont(self.littleFont)
-        love.graphics.print("Created by: fletch, mrs fletch, kraaico, leiss", 10, love.graphics.getHeight() - self.littleFont:getHeight() - 10)
+        love.graphics.print("Created by: fletch, mrs fletch, kraaico, leiss", 10 + self.offset, love.graphics.getHeight() - self.littleFont:getHeight() - 10)
 
         self.playButton:draw()
     love.graphics.pop()

@@ -31,6 +31,8 @@ local COLORS = require "utils.Colors"
 local MainMenu = require "scenes.00_MainMenu"
 local AudioManager = require "components.AudioManager"
 
+local flux = require "libs.flux.flux"
+
 function GameView:new(rules)
     -- initialises all the container fields
     local gameView = GameView.super.new(self, rules)
@@ -44,16 +46,32 @@ function GameView:new(rules)
     gameView.scene = MainMenu:init(rules, gameView)
     gameView:addChild(gameView.scene)
 
+    gameView.nextScene = nil
+
     gameView.audioManager = AudioManager:new()
     gameView.audioManager:play()
+
+    gameView.sceneOffset = 0
 
     return gameView
 end
 
-function GameView:switchScene(scene)
-    self:removeChild(self.scene)
-    self.scene = scene
-    self:addChild(self.scene)
+function GameView:switchScene(nextScene)
+    self.nextScene = nextScene
+
+    flux.to(self, 1, {sceneOffset=-love.graphics.getWidth()})
+        :ease("quadinout")
+        :onupdate(function()
+            self.scene:setOffset(self.sceneOffset)
+            self.nextScene:setOffset(self.sceneOffset + love.graphics.getWidth())
+        end)
+        :oncomplete(function()
+            self:removeChild(self.scene)
+            self.scene = nextScene
+            self:addChild(self.scene)
+            self.sceneOffset = 0
+            self.nextScene = nil
+        end)
 end
 
 function GameView:refresh()
@@ -62,6 +80,7 @@ function GameView:refresh()
 end
 
 function GameView:update( dt )
+    flux.update(dt)
     -- update for all of the children components
     GameView.super.update( self, dt )
 end
@@ -75,6 +94,10 @@ function GameView:draw()
 
     -- then we want to draw our children containers:
     GameView.super.draw(self)
+
+    if (self.nextScene ~= nil) then
+        self.nextScene:draw()
+    end
 end
 
 return GameView

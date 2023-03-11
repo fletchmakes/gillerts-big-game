@@ -35,6 +35,8 @@ function Introduction:init(rules)
     -- initialises all the container fields
     local view = Introduction.super.new(self, rules)
 
+    view.offset = 0
+
     view.font = love.graphics.newFont("assets/art/WindstilChonker-Regular.ttf", 40)
 
     view.bgImage = love.graphics.newImage("assets/art/classroom.png")
@@ -66,6 +68,11 @@ function Introduction:init(rules)
     return view
 end
 
+function Introduction:setOffset(offset)
+    self.offset = offset
+    self.nextButton:setOffset(offset)
+end
+
 function Introduction:update( dt )
     self.nextButton:update(dt)
 
@@ -77,21 +84,21 @@ end
 function Introduction:draw()
     love.graphics.push("all")
         -- bg image
-        love.graphics.draw(self.bgImage)
+        love.graphics.draw(self.bgImage, self.offset)
 
         -- gillert
         local imageX = (love.graphics.getWidth() / 2) - (self.gillertBlack:getWidth() / 2)
         local imageY = (love.graphics.getHeight() / 2) - (self.gillertBlack:getHeight() / 2) + 40
-        love.graphics.draw(self.gillertVersion, imageX, imageY)
+        love.graphics.draw(self.gillertVersion, imageX + self.offset, imageY)
 
         -- text bg
         love.graphics.setColor(COLORS.colorFromHex("#00000060"))
-        love.graphics.rectangle("fill", 0, 0, love.graphics.getWidth(), (self.font:getHeight() * 2) + 40)
+        love.graphics.rectangle("fill", self.offset, 0, love.graphics.getWidth(), (self.font:getHeight() * 2) + 40)
 
         -- text
         love.graphics.setFont(self.font)
         love.graphics.setColor(COLORS.colorFromHex("#FFFFFF"))
-        love.graphics.printf(self.text[self.textIdx], 20, 20, love.graphics.getWidth() - 40)
+        love.graphics.printf(self.text[self.textIdx], 20 + self.offset, 20, love.graphics.getWidth() - 40)
     love.graphics.pop()
 
     self.nextButton:draw()
