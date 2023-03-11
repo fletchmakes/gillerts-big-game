@@ -47,7 +47,7 @@ function MainMenu:init(rules, parent)
     view.titleY = 0
 
     local playButtonAction = function()
-        local nextScene = Introduction:init(rules)
+        local nextScene = Introduction:init(rules, parent)
         parent:switchScene(nextScene)
     end
 

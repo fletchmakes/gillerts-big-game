@@ -26,15 +26,14 @@ local Plan = require "libs.plan.plan"
 local Rules = Plan.Rules
 
 local Container = Plan.Container
-local Introduction = Container:extend()
+local MermaidFamily = Container:extend()
 
 local COLORS = require "utils.Colors"
 local Button = require "components.Button"
-local MermaidFamily = require "scenes.02_MermaidFamily"
 
-function Introduction:init(rules, parent)
+function MermaidFamily:init(rules, parent)
     -- initialises all the container fields
-    local view = Introduction.super.new(self, rules)
+    local view = MermaidFamily.super.new(self, rules)
 
     view.offset = 0
 
@@ -42,27 +41,26 @@ function Introduction:init(rules, parent)
 
     view.bgImage = love.graphics.newImage("assets/art/classroom.png")
 
-    view.gillertBlack = love.graphics.newImage("assets/art/gillert-black.png")
-    view.gillert = love.graphics.newImage("assets/art/gillert.png")
-    view.gillertYOffset = 0
-    view.animationStart = love.timer.getTime()
-
-    view.gillertVersion = view.gillertBlack
-
     view.text = {
-        "This is the story of Gillert.",
-        "Who is Gillert?",
-        "Born to two mermaid parents, Gillert's genes somehow got swapped.",
-        "And thus, the first reverse-mermaid was born."
+        "Unfortunately, unique doesn't always mean well-liked.",
+        "Gillert was an outcast among his mermaid community.",
+        "He had no friends and was constantly teased by the other mermaid kids at school.",
+        "On his fourteenth birthday, his mermaid moms knew something needed to change.",
+        "\"Gillert, we know you've been having a hard time at school.\"",
+        "\"I think you know your mama and I are involved in an online support group on Fishbook...\"",
+        "\"...for parents of reverse-mythical creatures.\"",
+        "\"One couple we met in the group would be willing to have you stay with them...\"",
+        "\"...so you can go to school on the surface.\"",
+        "And so, Gillert packed his things, said goodbye, and left for the surface.",
+        "But the journey to the surface was hard and long,",
+        "and without a tail, Gillert couldn't swim as well as other mermaids.",
+        "He needs your help to keep his strength up as he swims!"
     }
     view.textIdx = 1
 
     local nextButtonAction = function()
         if (view.textIdx < #view.text) then
             view.textIdx = view.textIdx + 1
-        else
-            local nextScene = MermaidFamily:init(rules, parent)
-            parent:switchScene(nextScene)
         end
     end
 
@@ -73,46 +71,33 @@ function Introduction:init(rules, parent)
     end
 
     view.nextButton = Button:new("next", 0, 0, nextButtonAction)
-    local nextButtonX = love.graphics.getWidth() - view.nextButton:getWidth() - 20
-    local nextButtonY = love.graphics.getHeight() - view.nextButton:getHeight() - 20
-    view.nextButton:setPosition(nextButtonX, nextButtonY)
-
+    local buttonX = love.graphics.getWidth() - view.nextButton:getWidth() - 20
+    local buttonY = love.graphics.getHeight() - view.nextButton:getHeight() - 20
+    view.nextButton:setPosition(buttonX, buttonY)
+    
     view.previousButton = Button:new("back", 0, 0, previousButtonAction)
     local prevButtonX = 20
     local prevButtonY = love.graphics.getHeight() - view.nextButton:getHeight() - 20
     view.previousButton:setPosition(prevButtonX, prevButtonY)
-    
+
     return view
 end
 
-function Introduction:setOffset(offset)
+function MermaidFamily:setOffset(offset)
     self.offset = offset
     self.nextButton:setOffset(offset)
     self.previousButton:setOffset(offset)
 end
 
-function Introduction:update( dt )
+function MermaidFamily:update( dt )
     self.nextButton:update(dt)
     self.previousButton:update(dt)
-
-    self.gillertYOffset = math.sin(love.timer.getTime() - self.animationStart) * 10
-
-    if (self.textIdx == 4) then
-        self.gillertVersion = self.gillert
-    else
-        self.gillertVersion = self.gillertBlack
-    end
 end
 
-function Introduction:draw()
+function MermaidFamily:draw()
     love.graphics.push("all")
         -- bg image
         love.graphics.draw(self.bgImage, self.offset)
-
-        -- gillert
-        local imageX = (love.graphics.getWidth() / 2) - (self.gillertBlack:getWidth() / 2)
-        local imageY = (love.graphics.getHeight() / 2) - (self.gillertBlack:getHeight() / 2) + 40
-        love.graphics.draw(self.gillertVersion, imageX + self.offset, imageY + self.gillertYOffset)
 
         -- text bg
         love.graphics.setColor(COLORS.colorFromHex("#00000060"))
@@ -128,4 +113,4 @@ function Introduction:draw()
     self.previousButton:draw()
 end
 
-return Introduction
+return MermaidFamily
