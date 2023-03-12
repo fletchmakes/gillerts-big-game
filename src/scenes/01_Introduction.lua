@@ -37,7 +37,7 @@ function Introduction:init(rules, parent)
 
     view.font = love.graphics.newFont("assets/art/WindstilChonker-Regular.ttf", 40)
 
-    view.bgImage = love.graphics.newImage("assets/art/water_bg.jpg")
+    view.bgImage = love.graphics.newImage("assets/art/water_bg.png")
 
     view.gillertBlack = love.graphics.newImage("assets/art/gillert-black.png")
     view.gillert = love.graphics.newImage("assets/art/gillert.png")

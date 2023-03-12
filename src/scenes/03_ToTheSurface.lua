@@ -35,6 +35,8 @@ function ToTheSurface:init(rules, parent)
 
     view.font = love.graphics.newFont("assets/art/WindstilChonker-Regular.ttf", 40)
 
+    "He needs your help to keep his strength up as he swims!"
+
     view.bgImage = love.graphics.newImage("assets/art/classroom.png")
 
     return view

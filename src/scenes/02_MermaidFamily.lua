@@ -49,30 +49,43 @@ function MermaidFamily:init(rules, parent)
         "And so, Gillert packed his things, said goodbye, and left for the surface.",
         "But the journey to the surface was hard and long,",
         "and without a tail, Gillert couldn't swim as well as other mermaids.",
-        "He needs your help to keep his strength up as he swims!"
     }
 
     view.images = {
-        { image=love.graphics.newImage("assets/art/water_bg.jpg"), pos={x=0, y=0} }
+        { image=love.graphics.newImage("assets/art/water_bg.png"), traits={x=0, y=0, alpha=1} },
+        -- TODO: animate the whale in the bg?
+        { image=love.graphics.newImage("assets/art/water_castle.png"), traits={x=175, y=300, alpha=1} },
+        { image=love.graphics.newImage("assets/art/mom1_happy.png"), traits={x=50, y=50, alpha=0} },
+        { image=love.graphics.newImage("assets/art/mom2_happy.png"), traits={x=550, y=50, alpha=0} },
+        { image=love.graphics.newImage("assets/art/mom1_sad.png"), traits={x=50, y=50, alpha=0} },
+        { image=love.graphics.newImage("assets/art/mom2_gillerthug.png"), traits={x=550, y=-200, alpha=0} },
+        { image=love.graphics.newImage("assets/art/gillert-concern.png"), traits={x=400, y=100, alpha=0} }
     }
 
     view.pages = {
         -- page 1
         function() 
-            parent.flux.to(view.images[1].pos, 1, { x=0, y=0 }):ease("quadinout")
+            parent.flux.to(view.images[1].traits, 1, { y=0 }):ease("quadinout")
+            parent.flux.to(view.images[2].traits, 1, { y=290 }):ease("quadinout")
         end,
         -- page 2
         function()
-            parent.flux.to(view.images[1].pos, 1, { x=0, y=-300 }):ease("quadinout")
+            parent.flux.to(view.images[1].traits, 1, { y=-300 }):ease("quadinout")
+            parent.flux.to(view.images[2].traits, 1, { y=-10}):ease("quadinout")
         end,
         -- page 3
         function()
+            parent.flux.to(view.images[3].traits, 1, { alpha=0 }):ease("quadinout")
+            parent.flux.to(view.images[4].traits, 1, { alpha=0 }):ease("quadinout")
         end,
         -- page 4
         function()
+            parent.flux.to(view.images[3].traits, 1, { alpha=1 }):ease("quadinout")
+            parent.flux.to(view.images[4].traits, 1, { alpha=1 }):ease("quadinout")
         end,
         -- page 5
         function()
+            parent.flux.to(view.images[3].traits, 1, { alpha=0.3 }):ease("quadinout")
         end,
         -- page 6
         function()
@@ -85,19 +98,28 @@ function MermaidFamily:init(rules, parent)
         end,
         -- page 9
         function()
+            parent.flux.to(view.images[3].traits, 1, { alpha=0.3 }):ease("quadinout")
+            parent.flux.to(view.images[4].traits, 1, { alpha=1 }):ease("quadinout")
+            parent.flux.to(view.images[5].traits, 1, { alpha=0 }):ease("quadinout")
+            parent.flux.to(view.images[6].traits, 1, { alpha=0 }):ease("quadinout")
         end,
         -- page 10
         function()
+            parent.flux.to(view.images[3].traits, 1, { alpha=0 }):ease("quadinout")
+            parent.flux.to(view.images[4].traits, 1, { alpha=0 }):ease("quadinout")
+            parent.flux.to(view.images[5].traits, 1, { alpha=1 }):ease("quadinout")
+            parent.flux.to(view.images[6].traits, 1, { alpha=1 }):ease("quadinout")
         end,
         -- page 11
         function()
+            parent.flux.to(view.images[5].traits, 1, { alpha=0 }):ease("quadinout")
+            parent.flux.to(view.images[6].traits, 1, { alpha=0 }):ease("quadinout")
+            parent.flux.to(view.images[7].traits, 1, { alpha=0 }):ease("quadinout")
         end,
         -- page 12
         function()
-        end,
-        -- page 13
-        function()
-        end,
+            parent.flux.to(view.images[7].traits, 1, { alpha=1 }):ease("quadinout")
+        end
     }
 
     view.pageIdx = 1
@@ -158,7 +180,8 @@ function MermaidFamily:draw()
     love.graphics.push("all")
         -- images
         for _,image in ipairs(self.images) do
-            love.graphics.draw(image.image, image.pos.x + self.offset, image.pos.y)
+            love.graphics.setColor({1, 1, 1, image.traits.alpha})
+            love.graphics.draw(image.image, image.traits.x + self.offset, image.traits.y)
         end
 
         -- text bg
