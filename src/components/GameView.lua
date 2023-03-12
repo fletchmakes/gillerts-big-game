@@ -52,7 +52,7 @@ function GameView:new(rules)
         MainMenu:init(rules, gameView),
         Introduction:init(rules, gameView),
         MermaidFamily:init(rules, gameView),
-        -- ToTheSurface:init(rules, gameView)
+        ToTheSurface:init(rules, gameView),
     }
     gameView.sceneIdx = 1
 

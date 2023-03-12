@@ -65,6 +65,13 @@ function Button:setPosition(x, y)
     self.textY = ((self.height / 2) - (self.font:getHeight() / 2)) + self.y + 6
 end
 
+function Button:setText(newText)
+    self.text = newText
+
+    self.textX = ((self.width / 2) - (self.font:getWidth(self.text) / 2)) + self.x
+    self.textY = ((self.height / 2) - (self.font:getHeight() / 2)) + self.y + 6
+end
+
 function Button:setOffset(offset)
     self.offset = offset
 end
