@@ -20,11 +20,7 @@
 -- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 -- SOFTWARE.
 
-
-local Flux = require "libs.flux.flux"
 local Plan = require "libs.plan.plan"
-local Rules = Plan.Rules
-
 local Container = Plan.Container
 local MainMenu = Container:extend()
 
@@ -47,27 +43,35 @@ function MainMenu:init(rules, parent)
     view.titleY = 0
 
     local playButtonAction = function()
-        local nextScene = Introduction:init(rules, parent)
-        parent:switchScene(nextScene)
+        parent:nextScene()
     end
 
-    view.playButton = Button:new("play", 0, 0, playButtonAction)
-    local buttonX = (love.graphics.getWidth() / 2) - (view.playButton:getWidth() / 2)
-    view.playButton:setPosition(buttonX, 400)
+    local playButton = Button:new("play", 0, 0, playButtonAction)
+    local buttonX = (love.graphics.getWidth() / 2) - (playButton:getWidth() / 2)
+    playButton:setPosition(buttonX, 400)
+
+    view.buttons = {
+        playButton
+    }
 
     return view
 end
 
 function MainMenu:setOffset(offset)
     self.offset = offset
-    self.playButton:setOffset(offset)
+
+    for _,button in ipairs(self.buttons) do
+        button:setOffset(offset)
+    end
 end
 
 function MainMenu:update( dt )
     self.titleX = (love.graphics.getWidth() / 2) - (self.font:getWidth(self.title) / 2)
     self.titleY = (love.graphics.getHeight() / 2) - (self.font:getHeight() / 2)
 
-    self.playButton:update(dt)
+    for _,button in ipairs(self.buttons) do
+        button:update(dt)
+    end
 end
 
 function MainMenu:draw()
@@ -87,9 +91,11 @@ function MainMenu:draw()
         -- credits
         love.graphics.setFont(self.littleFont)
         love.graphics.print("Created by: fletch, mrs fletch, kraaico, leiss", 10 + self.offset, love.graphics.getHeight() - self.littleFont:getHeight() - 10)
-
-        self.playButton:draw()
     love.graphics.pop()
+
+    for _,button in ipairs(self.buttons) do
+        button:draw()
+    end
 end
 
 return MainMenu

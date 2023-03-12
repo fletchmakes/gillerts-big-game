@@ -20,7 +20,7 @@
 -- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 -- SOFTWARE.
 
-local Flux = require "libs.flux.flux"
+local flux = require "libs.flux.flux"
 local Plan = require "libs.plan.plan"
 local Rules = Plan.Rules
 
@@ -28,14 +28,19 @@ local Container = Plan.Container
 local GameView = Container:extend()
 
 local COLORS = require "utils.Colors"
-local MainMenu = require "scenes.00_MainMenu"
-local AudioManager = require "components.AudioManager"
 
-local flux = require "libs.flux.flux"
+local MainMenu = require "scenes.00_MainMenu"
+local Introduction = require "scenes.01_Introduction"
+local MermaidFamily = require "scenes.02_MermaidFamily"
+local ToTheSurface = require "scenes.03_ToTheSurface"
+
+local AudioManager = require "components.AudioManager"
 
 function GameView:new(rules)
     -- initialises all the container fields
     local gameView = GameView.super.new(self, rules)
+
+    gameView.flux = flux
 
     gameView.rules = Rules.new()
         :addX(Plan.relative(0))
@@ -43,10 +48,18 @@ function GameView:new(rules)
         :addWidth(Plan.relative(1))
         :addHeight(Plan.relative(1))
 
-    gameView.scene = MainMenu:init(rules, gameView)
+    gameView.scenes = {
+        MainMenu:init(rules, gameView),
+        Introduction:init(rules, gameView),
+        MermaidFamily:init(rules, gameView),
+        -- ToTheSurface:init(rules, gameView)
+    }
+    gameView.sceneIdx = 1
+
+    gameView.scene = gameView.scenes[1]
     gameView:addChild(gameView.scene)
 
-    gameView.nextScene = nil
+    gameView.next = nil
     gameView.tween = nil
 
     gameView.audioManager = AudioManager:new()
@@ -57,40 +70,84 @@ function GameView:new(rules)
     return gameView
 end
 
-function GameView:switchScene(nextScene)
+function GameView:nextScene()
     if (self.tween ~= nil) then return end
+    if (self.sceneIdx >= #self.scenes) then return end
 
-    self.nextScene = nextScene
+    self.sceneIdx = self.sceneIdx + 1
+    self.next = self.scenes[self.sceneIdx]
+
+    for _,button in ipairs(self.scene.buttons) do
+        button:disable()
+    end
+
+    for _,button in ipairs(self.next.buttons) do
+        button:disable()
+    end
 
     self.tween = flux.to(self, 1, {sceneOffset=-love.graphics.getWidth()})
         :ease("quadinout")
         :onupdate(function()
             self.scene:setOffset(self.sceneOffset)
-            self.nextScene:setOffset(self.sceneOffset + love.graphics.getWidth())
+            self.next:setOffset(self.sceneOffset + love.graphics.getWidth())
         end)
         :oncomplete(function()
             self:removeChild(self.scene)
-            self.scene = nextScene
+            self.scene = self.next
             self:addChild(self.scene)
             self.sceneOffset = 0
-            self.nextScene = nil
+            self.next = nil
             self.tween = nil
+
+            for _,button in ipairs(self.scene.buttons) do
+                button:enable()
+            end
         end)
 end
 
-function GameView:refresh()
-    -- refresh for all of the children components
-    GameView.super.refresh(self)
+function GameView:previousScene()
+    if (self.tween ~= nil) then return end
+    if (self.sceneIdx <= 1) then return end
+
+    self.sceneIdx = self.sceneIdx - 1
+    self.next = self.scenes[self.sceneIdx]
+
+    for _,button in ipairs(self.scene.buttons) do
+        button:disable()
+    end
+
+    for _,button in ipairs(self.next.buttons) do
+        button:disable()
+    end
+
+    self.tween = flux.to(self, 1, {sceneOffset=love.graphics.getWidth()})
+        :ease("quadinout")
+        :onupdate(function()
+            self.scene:setOffset(self.sceneOffset)
+            self.next:setOffset(self.sceneOffset - love.graphics.getWidth())
+        end)
+        :oncomplete(function()
+            self:removeChild(self.scene)
+            self.scene = self.next
+            self:addChild(self.scene)
+            self.sceneOffset = 0
+            self.next = nil
+            self.tween = nil
+
+            for _,button in ipairs(self.scene.buttons) do
+                button:enable()
+            end
+        end)
 end
 
 function GameView:update( dt )
     flux.update(dt)
-    -- update for all of the children components
-    GameView.super.update( self, dt )
 
-    if (self.nextScene ~= nil) then
-        self.nextScene:update(dt)
+    if (self.next ~= nil) then
+        self.next:update(dt)
     end
+
+    self.scene:update(dt)
 end
 
 function GameView:draw()
@@ -100,12 +157,11 @@ function GameView:draw()
         love.graphics.rectangle("fill", self.x, self.y, self.w, self.h)
     love.graphics.pop()
 
-    -- then we want to draw our children containers:
-    GameView.super.draw(self)
-
-    if (self.nextScene ~= nil) then
-        self.nextScene:draw()
+    if (self.next ~= nil) then
+        self.next:draw()
     end
+
+    self.scene:draw()
 end
 
 return GameView

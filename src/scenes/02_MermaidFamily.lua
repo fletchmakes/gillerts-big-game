@@ -20,16 +20,13 @@
 -- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 -- SOFTWARE.
 
-
-local Flux = require "libs.flux.flux"
 local Plan = require "libs.plan.plan"
-local Rules = Plan.Rules
-
 local Container = Plan.Container
 local MermaidFamily = Container:extend()
 
 local COLORS = require "utils.Colors"
 local Button = require "components.Button"
+local ToTheSurface = require "scenes.03_ToTheSurface"
 
 function MermaidFamily:init(rules, parent)
     -- initialises all the container fields
@@ -38,8 +35,6 @@ function MermaidFamily:init(rules, parent)
     view.offset = 0
 
     view.font = love.graphics.newFont("assets/art/WindstilChonker-Regular.ttf", 40)
-
-    view.bgImage = love.graphics.newImage("assets/art/classroom.png")
 
     view.text = {
         "Unfortunately, unique doesn't always mean well-liked.",
@@ -56,48 +51,115 @@ function MermaidFamily:init(rules, parent)
         "and without a tail, Gillert couldn't swim as well as other mermaids.",
         "He needs your help to keep his strength up as he swims!"
     }
-    view.textIdx = 1
+
+    view.images = {
+        { image=love.graphics.newImage("assets/art/water_bg.jpg"), pos={x=0, y=0} }
+    }
+
+    view.pages = {
+        -- page 1
+        function() 
+            parent.flux.to(view.images[1].pos, 1, { x=0, y=0 }):ease("quadinout")
+        end,
+        -- page 2
+        function()
+            parent.flux.to(view.images[1].pos, 1, { x=0, y=-300 }):ease("quadinout")
+        end,
+        -- page 3
+        function()
+        end,
+        -- page 4
+        function()
+        end,
+        -- page 5
+        function()
+        end,
+        -- page 6
+        function()
+        end,
+        -- page 7
+        function()
+        end,
+        -- page 8
+        function()
+        end,
+        -- page 9
+        function()
+        end,
+        -- page 10
+        function()
+        end,
+        -- page 11
+        function()
+        end,
+        -- page 12
+        function()
+        end,
+        -- page 13
+        function()
+        end,
+    }
+
+    view.pageIdx = 1
 
     local nextButtonAction = function()
-        if (view.textIdx < #view.text) then
-            view.textIdx = view.textIdx + 1
+        if (view.pageIdx < #view.text) then
+            view:changePage(1)
+        else
+            parent:nextScene()
         end
     end
 
     local previousButtonAction = function()
-        if (view.textIdx > 1) then
-            view.textIdx = view.textIdx - 1
+        if (view.pageIdx > 1) then
+            view:changePage(-1)
+        else
+            parent:previousScene()
         end
     end
 
-    view.nextButton = Button:new("next", 0, 0, nextButtonAction)
-    local buttonX = love.graphics.getWidth() - view.nextButton:getWidth() - 20
-    local buttonY = love.graphics.getHeight() - view.nextButton:getHeight() - 20
-    view.nextButton:setPosition(buttonX, buttonY)
+    local nextButton = Button:new("next", 0, 0, nextButtonAction)
+    local buttonX = love.graphics.getWidth() - nextButton:getWidth() - 20
+    local buttonY = love.graphics.getHeight() - nextButton:getHeight() - 20
+    nextButton:setPosition(buttonX, buttonY)
     
-    view.previousButton = Button:new("back", 0, 0, previousButtonAction)
+    local previousButton = Button:new("back", 0, 0, previousButtonAction)
     local prevButtonX = 20
-    local prevButtonY = love.graphics.getHeight() - view.nextButton:getHeight() - 20
-    view.previousButton:setPosition(prevButtonX, prevButtonY)
+    local prevButtonY = love.graphics.getHeight() - nextButton:getHeight() - 20
+    previousButton:setPosition(prevButtonX, prevButtonY)
+
+    view.buttons = {
+        nextButton,
+        previousButton
+    }
 
     return view
 end
 
+function MermaidFamily:changePage(offset)
+    self.pageIdx = self.pageIdx + offset
+    self.pages[self.pageIdx]()
+end
+
 function MermaidFamily:setOffset(offset)
     self.offset = offset
-    self.nextButton:setOffset(offset)
-    self.previousButton:setOffset(offset)
+    for _,button in ipairs(self.buttons) do
+        button:setOffset(offset)
+    end
 end
 
 function MermaidFamily:update( dt )
-    self.nextButton:update(dt)
-    self.previousButton:update(dt)
+    for _,button in ipairs(self.buttons) do
+        button:update(dt)
+    end
 end
 
 function MermaidFamily:draw()
     love.graphics.push("all")
-        -- bg image
-        love.graphics.draw(self.bgImage, self.offset)
+        -- images
+        for _,image in ipairs(self.images) do
+            love.graphics.draw(image.image, image.pos.x + self.offset, image.pos.y)
+        end
 
         -- text bg
         love.graphics.setColor(COLORS.colorFromHex("#00000060"))
@@ -106,11 +168,12 @@ function MermaidFamily:draw()
         -- text
         love.graphics.setFont(self.font)
         love.graphics.setColor(COLORS.colorFromHex("#FFFFFF"))
-        love.graphics.printf(self.text[self.textIdx], 20 + self.offset, 20, love.graphics.getWidth() - 40)
+        love.graphics.printf(self.text[self.pageIdx], 20 + self.offset, 20, love.graphics.getWidth() - 40)
     love.graphics.pop()
 
-    self.nextButton:draw()
-    self.previousButton:draw()
+    for _,button in ipairs(self.buttons) do
+        button:draw()
+    end
 end
 
 return MermaidFamily

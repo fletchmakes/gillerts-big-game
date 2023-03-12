@@ -20,40 +20,40 @@
 -- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 -- SOFTWARE.
 
+local Plan = require "libs.plan.plan"
+local Container = Plan.Container
+local ToTheSurface = Container:extend()
 
-local AudioManager = {}
+local COLORS = require "utils.Colors"
+local Button = require "components.Button"
 
-function AudioManager:new()
-    local manager = {}
-    setmetatable(manager, self )
-    self.__index = self
+function ToTheSurface:init(rules, parent)
+    -- initialises all the container fields
+    local view = ToTheSurface.super.new(self, rules)
 
-    manager.tracks =  {
-        love.audio.newSource("assets/music/bgm-1-bossa-nova.mp3", "stream")
-    }
+    view.offset = 0
 
-    manager.trackIdx = 1
+    view.font = love.graphics.newFont("assets/art/WindstilChonker-Regular.ttf", 40)
 
-    return manager
+    view.bgImage = love.graphics.newImage("assets/art/classroom.png")
+
+    return view
 end
 
-function AudioManager:play()
-    self.tracks[self.trackIdx]:setLooping(true)
-    self.tracks[self.trackIdx]:play()
+function ToTheSurface:setOffset(offset)
+    self.offset = offset
 end
 
-function AudioManager:pause()
-    self.tracks[self.trackIdx]:pause()
+function ToTheSurface:update( dt )
+
 end
 
-function AudioManager:stop()
-    self.tracks[self.trackIdx]:stop()
+function ToTheSurface:draw()
+    love.graphics.push("all")
+        -- bg image
+        love.graphics.draw(self.bgImage, self.offset)
+
+    love.graphics.pop()
 end
 
-function AudioManager:setTrack(newTrackIdx)
-    self.trackIdx = newTrackIdx
-    self:stop()
-    self:play()
-end
-
-return AudioManager
+return ToTheSurface

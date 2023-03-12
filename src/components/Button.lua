@@ -40,6 +40,7 @@ function Button:new(text, x, y, action)
     button.fillMode = "line"
     button.textColor = "#FFFFFF"
     button.isPressed = false
+    button.disabled = false
 
     button.font = love.graphics.newFont("assets/art/WindstilChonker-Regular.ttf", 40)
 
@@ -68,6 +69,14 @@ function Button:setOffset(offset)
     self.offset = offset
 end
 
+function Button:disable()
+    self.disabled = true
+end
+
+function Button:enable()
+    self.disabled = false
+end
+
 function Button:update( dt )
     local mouseX, mouseY = love.mouse.getPosition()
 
@@ -76,7 +85,7 @@ function Button:update( dt )
             self.fillMode = "fill"
             self.textColor = "#615a7d"
 
-        if (love.mouse.isDown(1) and not self.isPressed) then
+        if (love.mouse.isDown(1) and not self.isPressed and not self.disabled) then
             self.action()
             self.isPressed = true
         end
