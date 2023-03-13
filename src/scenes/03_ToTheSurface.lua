@@ -48,6 +48,7 @@ function ToTheSurface:init(rules, parent)
     view.pressed = false
     view.gillertPos = {x=(love.graphics.getWidth()/2)-(113/2), y=love.graphics.getHeight()-view.gillert:getHeight()}
     view.gillertVel = {dx=0, dy=0}
+    view.gillertFrame = 0
 
     view.playing = false
     view.hasWon = false
@@ -92,10 +93,12 @@ function ToTheSurface:update( dt )
         if (love.mouse.isDown(1) and not self.pressed) then
             self.pressed = true
             self.gillertVel.dy = self.swim
+            self.gillertFrame = 1
         end
 
         if (not love.mouse.isDown(1)) then
             self.pressed = false
+            self.gillertFrame = 0
         end
 
         self.gillertPos.y = self.gillertVel.dy + self.gillertPos.y
@@ -147,7 +150,7 @@ function ToTheSurface:draw()
             love.graphics.printf("Gillert finally made it to the surface, where his host family was waiting.", 20 + self.offset, 20, love.graphics.getWidth() - 40)
         end
 
-        love.graphics.draw(self.gillert, love.graphics.newQuad(0, 0, 113, 116, self.gillert:getDimensions()), self.gillertPos.x + self.offset, self.gillertPos.y)
+        love.graphics.draw(self.gillert, love.graphics.newQuad(113*self.gillertFrame, 0, 113, 116, self.gillert:getDimensions()), self.gillertPos.x + self.offset, self.gillertPos.y)
     love.graphics.pop()
 
     for _,button in ipairs(self.buttons) do

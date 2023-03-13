@@ -26,29 +26,30 @@ local MermaidFamily = Container:extend()
 
 local COLORS = require "utils.Colors"
 local Button = require "components.Button"
-local ToTheSurface = require "scenes.03_ToTheSurface"
 
 function MermaidFamily:init(rules, parent)
     -- initialises all the container fields
     local view = MermaidFamily.super.new(self, rules)
 
     view.offset = 0
+    view.yOffset = 0
+    view.animationStart = love.timer.getTime()
 
     view.font = love.graphics.newFont("assets/art/WindstilChonker-Regular.ttf", 40)
 
     view.text = {
-        "Unfortunately, unique doesn't always mean well-liked.",
-        "Gillert was an outcast among his mermaid community.",
-        "He had no friends and was constantly teased by the other mermaid kids at school.",
-        "On his fourteenth birthday, his mermaid moms knew something needed to change.",
-        "\"Gillert, we know you've been having a hard time at school.\"",
-        "\"I think you know your mama and I are involved in an online support group on Fishbook...\"",
-        "\"...for parents of reverse-mythical creatures.\"",
-        "\"One couple we met in the group would be willing to have you stay with them...\"",
-        "\"...so you can go to school on the surface.\"",
-        "And so, Gillert packed his things, said goodbye, and left for the surface.",
-        "But the journey to the surface was hard and long,",
-        "and without a tail, Gillert couldn't swim as well as other mermaids.",
+        {COLORS.colorFromHex("#FFFFFF"), "Unfortunately, unique doesn't always mean well-liked."},
+        {COLORS.colorFromHex("#FFFFFF"), "Gillert was an outcast among his mermaid community."},
+        {COLORS.colorFromHex("#FFFFFF"), "He had no friends and was constantly teased by the other mermaid kids at school."},
+        {COLORS.colorFromHex("#FFFFFF"), "On his fourteenth birthday, his mermaid moms knew something needed to change."},
+        {COLORS.colorFromHex("#ffa696"), "\"Gillert, we know you've been having a hard time at school.\""},
+        {COLORS.colorFromHex("#ffa696"), "\"I think you know your mama and I are involved in an online support group on Fishbook...\""},
+        {COLORS.colorFromHex("#ffa696"), "\"...for parents of reverse-mythical creatures.\""},
+        {COLORS.colorFromHex("#ffa696"), "\"One couple we met in the group would be willing to have you stay with them...\""},
+        {COLORS.colorFromHex("#ffa696"), "\"...so you can go to school on the surface.\""},
+        {COLORS.colorFromHex("#FFFFFF"), "And so, Gillert packed his things, said goodbye, and left for the surface."},
+        {COLORS.colorFromHex("#FFFFFF"), "But the journey to the surface was hard and long,"},
+        {COLORS.colorFromHex("#FFFFFF"), "and without a tail, Gillert couldn't swim as well as other mermaids."},
     }
 
     view.images = {
@@ -57,8 +58,8 @@ function MermaidFamily:init(rules, parent)
         { image=love.graphics.newImage("assets/art/water_castle.png"), traits={x=175, y=300, alpha=1} },
         { image=love.graphics.newImage("assets/art/mom1_happy.png"), traits={x=50, y=50, alpha=0} },
         { image=love.graphics.newImage("assets/art/mom2_happy.png"), traits={x=550, y=50, alpha=0} },
-        { image=love.graphics.newImage("assets/art/mom1_sad.png"), traits={x=50, y=50, alpha=0} },
-        { image=love.graphics.newImage("assets/art/mom2_gillerthug.png"), traits={x=550, y=-200, alpha=0} },
+        { image=love.graphics.newImage("assets/art/mom1.png"), traits={x=100, y=100, alpha=0} },
+        { image=love.graphics.newImage("assets/art/mom2_gillerthug.png"), traits={x=500, y=100, alpha=0} },
         { image=love.graphics.newImage("assets/art/gillert-concern.png"), traits={x=400, y=100, alpha=0} }
     }
 
@@ -171,6 +172,8 @@ function MermaidFamily:setOffset(offset)
 end
 
 function MermaidFamily:update( dt )
+    self.yOffset = math.sin(love.timer.getTime() - self.animationStart) * 10
+
     for _,button in ipairs(self.buttons) do
         button:update(dt)
     end
@@ -179,9 +182,13 @@ end
 function MermaidFamily:draw()
     love.graphics.push("all")
         -- images
-        for _,image in ipairs(self.images) do
+        for idx,image in ipairs(self.images) do
             love.graphics.setColor({1, 1, 1, image.traits.alpha})
-            love.graphics.draw(image.image, image.traits.x + self.offset, image.traits.y)
+            local yOffset = 0
+            if (idx >= 3) then
+                yOffset = self.yOffset
+            end
+            love.graphics.draw(image.image, image.traits.x + self.offset, image.traits.y + yOffset)
         end
 
         -- text bg

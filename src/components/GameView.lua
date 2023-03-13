@@ -33,6 +33,8 @@ local MainMenu = require "scenes.00_MainMenu"
 local Introduction = require "scenes.01_Introduction"
 local MermaidFamily = require "scenes.02_MermaidFamily"
 local ToTheSurface = require "scenes.03_ToTheSurface"
+local Neighby = require "scenes.04_Neighby"
+local SurfaceSchool = require "scenes.05_SurfaceSchool"
 
 local AudioManager = require "components.AudioManager"
 
@@ -53,6 +55,8 @@ function GameView:new(rules)
         Introduction:init(rules, gameView),
         MermaidFamily:init(rules, gameView),
         ToTheSurface:init(rules, gameView),
+        Neighby:init(rules, gameView),
+        SurfaceSchool:init(rules, gameView)
     }
     gameView.sceneIdx = 1
 

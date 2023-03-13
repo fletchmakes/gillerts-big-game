@@ -20,61 +20,84 @@
 -- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 -- SOFTWARE.
 
-
 local Plan = require "libs.plan.plan"
 local Container = Plan.Container
-local Introduction = Container:extend()
+local SurfaceSchool = Container:extend()
 
 local COLORS = require "utils.Colors"
 local Button = require "components.Button"
-local MermaidFamily = require "scenes.02_MermaidFamily"
 
-function Introduction:init(rules, parent)
+function SurfaceSchool:init(rules, parent)
     -- initialises all the container fields
-    local view = Introduction.super.new(self, rules)
+    local view = SurfaceSchool.super.new(self, rules)
 
     view.offset = 0
+    view.yOffset = 0
+    view.animationStart = love.timer.getTime()
 
     view.font = love.graphics.newFont("assets/art/WindstilChonker-Regular.ttf", 40)
 
-    view.bgImage = love.graphics.newImage("assets/art/water_bg.png")
-
-    view.gillertBlack = love.graphics.newImage("assets/art/gillert-black.png")
-    view.gillert = love.graphics.newImage("assets/art/gillert.png")
-    view.gillertYOffset = 0
-    view.animationStart = love.timer.getTime()
-
-    view.gillertVersion = view.gillertBlack
-
     view.text = {
-        {COLORS.colorFromHex("#FFFFFF"), "This is the story of Gillert."},
-        {COLORS.colorFromHex("#FFFFFF"), "Who is Gillert?"},
-        {COLORS.colorFromHex("#FFFFFF"), "Born to two mermaid parents, Gillert's genes somehow got swapped."},
-        {COLORS.colorFromHex("#FFFFFF"), "And thus, the first reverse-mermaid was born."}
+        {COLORS.colorFromHex("#FFFFFF"), "Gillert immediately felt overwhelmed at Surface High."},
+        {COLORS.colorFromHex("#FFFFFF"), "Without water to slow things down, the hallways were crowded and chaotic."},
+        {COLORS.colorFromHex("#FFFFFF"), "Students talked loudly with each other at their lockers, but when Gillert walked by, ripples of awed silence followed him."},
+        {COLORS.colorFromHex("#FFFFFF"), "Soon afterwards, the snickers started."},
+        {COLORS.colorFromHex("#FFFFFF"), "Then a voice from behind him shouted,", COLORS.colorFromHex("#ffa696"), " \"You look like a FISH OUT OF WATER!\""},
+        {COLORS.colorFromHex("#FFFFFF"), "Neighby rushed him to an empty classroom nearby."},
+        {COLORS.colorFromHex("#FFFFFF"), "And Gillert started to cry."},
     }
-    view.textIdx = 1
+
+    view.images = {
+
+    }
+
+    view.pages = {
+        -- page 1
+        function() 
+        end,
+        -- page 2
+        function()
+        end,
+        -- page 3
+        function()
+        end,
+        -- page 4
+        function()
+        end,
+        -- page 5
+        function()
+        end,
+        -- page 6
+        function()
+        end,
+        -- page 7
+        function()
+        end
+    }
+
+    view.pageIdx = 1
 
     local nextButtonAction = function()
-        if (view.textIdx < #view.text) then
-            view.textIdx = view.textIdx + 1
+        if (view.pageIdx < #view.text) then
+            view:changePage(1)
         else
             parent:nextScene()
         end
     end
 
     local previousButtonAction = function()
-        if (view.textIdx > 1) then
-            view.textIdx = view.textIdx - 1
+        if (view.pageIdx > 1) then
+            view:changePage(-1)
         else
             parent:previousScene()
         end
     end
 
     local nextButton = Button:new("next", 0, 0, nextButtonAction)
-    local nextButtonX = love.graphics.getWidth() - nextButton:getWidth() - 20
-    local nextButtonY = love.graphics.getHeight() - nextButton:getHeight() - 20
-    nextButton:setPosition(nextButtonX, nextButtonY)
-
+    local buttonX = love.graphics.getWidth() - nextButton:getWidth() - 20
+    local buttonY = love.graphics.getHeight() - nextButton:getHeight() - 20
+    nextButton:setPosition(buttonX, buttonY)
+    
     local previousButton = Button:new("back", 0, 0, previousButtonAction)
     local prevButtonX = 20
     local prevButtonY = love.graphics.getHeight() - nextButton:getHeight() - 20
@@ -84,40 +107,41 @@ function Introduction:init(rules, parent)
         nextButton,
         previousButton
     }
-    
+
     return view
 end
 
-function Introduction:setOffset(offset)
+function SurfaceSchool:changePage(offset)
+    self.pageIdx = self.pageIdx + offset
+    self.pages[self.pageIdx]()
+end
+
+function SurfaceSchool:setOffset(offset)
     self.offset = offset
     for _,button in ipairs(self.buttons) do
         button:setOffset(offset)
     end
 end
 
-function Introduction:update( dt )
+function SurfaceSchool:update( dt )
+    self.yOffset = math.sin(love.timer.getTime() - self.animationStart) * 10
+
     for _,button in ipairs(self.buttons) do
         button:update(dt)
     end
-
-    self.gillertYOffset = math.sin(love.timer.getTime() - self.animationStart) * 10
-
-    if (self.textIdx == 4) then
-        self.gillertVersion = self.gillert
-    else
-        self.gillertVersion = self.gillertBlack
-    end
 end
 
-function Introduction:draw()
+function SurfaceSchool:draw()
     love.graphics.push("all")
-        -- bg image
-        love.graphics.draw(self.bgImage, self.offset)
-
-        -- gillert
-        local imageX = (love.graphics.getWidth() / 2) - (self.gillertBlack:getWidth() / 2)
-        local imageY = (love.graphics.getHeight() / 2) - (self.gillertBlack:getHeight() / 2) + 40
-        love.graphics.draw(self.gillertVersion, imageX + self.offset, imageY + self.gillertYOffset)
+        -- images
+        for idx,image in ipairs(self.images) do
+            love.graphics.setColor({1, 1, 1, image.traits.alpha})
+            local yOffset = 0
+            if (idx >= 3) then
+                yOffset = self.yOffset
+            end
+            love.graphics.draw(image.image, image.traits.x + self.offset, image.traits.y + yOffset)
+        end
 
         -- text bg
         love.graphics.setColor(COLORS.colorFromHex("#00000060"))
@@ -126,7 +150,7 @@ function Introduction:draw()
         -- text
         love.graphics.setFont(self.font)
         love.graphics.setColor(COLORS.colorFromHex("#FFFFFF"))
-        love.graphics.printf(self.text[self.textIdx], 20 + self.offset, 20, love.graphics.getWidth() - 40)
+        love.graphics.printf(self.text[self.pageIdx], 20 + self.offset, 20, love.graphics.getWidth() - 40)
     love.graphics.pop()
 
     for _,button in ipairs(self.buttons) do
@@ -134,4 +158,4 @@ function Introduction:draw()
     end
 end
 
-return Introduction
+return SurfaceSchool
