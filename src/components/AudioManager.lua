@@ -29,7 +29,7 @@ function AudioManager:new()
     self.__index = self
 
     manager.tracks =  {
-        love.audio.newSource("assets/music/bgm-1-bossa-nova.mp3", "stream")
+        love.audio.newSource("assets/music/BGM1_loop.mp3", "stream")
     }
 
     manager.trackIdx = 1

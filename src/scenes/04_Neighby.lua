@@ -32,7 +32,6 @@ function Neighby:init(rules, parent)
     local view = Neighby.super.new(self, rules)
 
     view.offset = 0
-    view.yOffset = 0
     view.animationStart = love.timer.getTime()
 
     view.font = love.graphics.newFont("assets/art/WindstilChonker-Regular.ttf", 40)
@@ -50,18 +49,26 @@ function Neighby:init(rules, parent)
     }
 
     view.images = {
-
+        { image=love.graphics.newImage("assets/art/neighby_house.png"), traits={x=0, y=0, alpha=1} },
+        { image=love.graphics.newImage("assets/art/neighby.png"), traits={x=450, y=150, alpha=1} },
+        { image=love.graphics.newImage("assets/art/neighbydad_1.png"), traits={x=100, y=150, alpha=0} },
     }
 
     view.pages = {
         -- page 1
-        function() 
+        function()
+            parent.flux.to(view.images[2].traits, 1, {alpha=1})
+            parent.flux.to(view.images[3].traits, 1, {x=100, alpha=0})
         end,
         -- page 2
         function()
+            parent.flux.to(view.images[2].traits, 1, {alpha=0.5})
+            parent.flux.to(view.images[3].traits, 1, {x=150, alpha=1})
         end,
         -- page 3
         function()
+            parent.flux.to(view.images[2].traits, 1, {alpha=1})
+            parent.flux.to(view.images[3].traits, 1, {alpha=0.3})
         end,
         -- page 4
         function()
@@ -132,8 +139,6 @@ function Neighby:setOffset(offset)
 end
 
 function Neighby:update( dt )
-    self.yOffset = math.sin(love.timer.getTime() - self.animationStart) * 10
-
     for _,button in ipairs(self.buttons) do
         button:update(dt)
     end
@@ -144,11 +149,7 @@ function Neighby:draw()
         -- images
         for idx,image in ipairs(self.images) do
             love.graphics.setColor({1, 1, 1, image.traits.alpha})
-            local yOffset = 0
-            if (idx >= 3) then
-                yOffset = self.yOffset
-            end
-            love.graphics.draw(image.image, image.traits.x + self.offset, image.traits.y + yOffset)
+            love.graphics.draw(image.image, image.traits.x + self.offset, image.traits.y)
         end
 
         -- text bg

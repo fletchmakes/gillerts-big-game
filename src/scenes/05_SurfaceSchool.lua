@@ -32,7 +32,6 @@ function SurfaceSchool:init(rules, parent)
     local view = SurfaceSchool.super.new(self, rules)
 
     view.offset = 0
-    view.yOffset = 0
     view.animationStart = love.timer.getTime()
 
     view.font = love.graphics.newFont("assets/art/WindstilChonker-Regular.ttf", 40)
@@ -48,7 +47,7 @@ function SurfaceSchool:init(rules, parent)
     }
 
     view.images = {
-
+        { image=love.graphics.newImage("assets/art/school-outside.png"), traits={x=0, y=0, alpha=1} },
     }
 
     view.pages = {
@@ -124,8 +123,6 @@ function SurfaceSchool:setOffset(offset)
 end
 
 function SurfaceSchool:update( dt )
-    self.yOffset = math.sin(love.timer.getTime() - self.animationStart) * 10
-
     for _,button in ipairs(self.buttons) do
         button:update(dt)
     end
@@ -136,11 +133,7 @@ function SurfaceSchool:draw()
         -- images
         for idx,image in ipairs(self.images) do
             love.graphics.setColor({1, 1, 1, image.traits.alpha})
-            local yOffset = 0
-            if (idx >= 3) then
-                yOffset = self.yOffset
-            end
-            love.graphics.draw(image.image, image.traits.x + self.offset, image.traits.y + yOffset)
+            love.graphics.draw(image.image, image.traits.x + self.offset, image.traits.y)
         end
 
         -- text bg
