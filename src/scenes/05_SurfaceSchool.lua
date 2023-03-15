@@ -42,12 +42,16 @@ function SurfaceSchool:init(rules, parent)
         {COLORS.colorFromHex("#FFFFFF"), "Students talked loudly with each other at their lockers, but when Gillert walked by, ripples of awed silence followed him."},
         {COLORS.colorFromHex("#FFFFFF"), "Soon afterwards, the snickers started."},
         {COLORS.colorFromHex("#FFFFFF"), "Then a voice from behind him shouted,", COLORS.colorFromHex("#ffa696"), " \"You look like a FISH OUT OF WATER!\""},
-        {COLORS.colorFromHex("#FFFFFF"), "Neighby rushed him to an empty classroom nearby."},
+        {COLORS.colorFromHex("#FFFFFF"), "Neighby rushed Gillert to an empty classroom nearby."},
         {COLORS.colorFromHex("#FFFFFF"), "And Gillert started to cry."},
     }
 
     view.images = {
-        { image=love.graphics.newImage("assets/art/school-outside.png"), traits={x=0, y=0, alpha=1} },
+        { image=love.graphics.newImage("assets/art/classroom.png"), traits={x=0, y=0, alpha=1} },
+        { image=love.graphics.newImage("assets/art/hallway.png"), traits={x=0, y=0, alpha=1} },
+        { image=love.graphics.newImage("assets/art/gillert-upset.png"), traits={x=250, y=200, alpha=1} },
+        { image=love.graphics.newImage("assets/art/neighby.png"), traits={x=550, y=150, alpha=1} },
+        { image=love.graphics.newImage("assets/art/gillert-cry.png"), traits={x=250, y=200, alpha=0} },
     }
 
     view.pages = {
@@ -56,21 +60,30 @@ function SurfaceSchool:init(rules, parent)
         end,
         -- page 2
         function()
+            parent:RaiseVolume()
         end,
         -- page 3
         function()
+            parent:LowerVolume()
         end,
         -- page 4
         function()
+            parent:RaiseVolume()
         end,
         -- page 5
         function()
+            parent.flux.to(view.images[2].traits, 1, {alpha=1})
         end,
         -- page 6
         function()
+            parent.flux.to(view.images[2].traits, 1, {alpha=0})
+            parent.flux.to(view.images[3].traits, 1, {alpha=1})
+            parent.flux.to(view.images[5].traits, 1, {alpha=0})
         end,
         -- page 7
         function()
+            parent.flux.to(view.images[3].traits, 1, {alpha=0})
+            parent.flux.to(view.images[5].traits, 1, {alpha=1})
         end
     }
 
@@ -133,11 +146,15 @@ function SurfaceSchool:draw()
         -- images
         for idx,image in ipairs(self.images) do
             love.graphics.setColor({1, 1, 1, image.traits.alpha})
-            love.graphics.draw(image.image, image.traits.x + self.offset, image.traits.y)
+            if (idx ~= 4) then
+                love.graphics.draw(image.image, image.traits.x + self.offset, image.traits.y)
+            else
+                love.graphics.draw(image.image, image.traits.x + self.offset, image.traits.y, 0, 1.2)
+            end
         end
 
         -- text bg
-        love.graphics.setColor(COLORS.colorFromHex("#00000060"))
+        love.graphics.setColor(COLORS.colorFromHex("#000000B0"))
         love.graphics.rectangle("fill", self.offset, 0, love.graphics.getWidth(), (self.font:getHeight() * 2) + 40)
 
         -- text

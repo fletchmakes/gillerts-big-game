@@ -80,7 +80,7 @@ function MainMenu:draw()
         love.graphics.draw(self.bgImage, self.offset)
 
         -- text bg
-        love.graphics.setColor(COLORS.colorFromHex("#00000060"))
+        love.graphics.setColor(COLORS.colorFromHex("#000000B0"))
         love.graphics.rectangle("fill", self.offset, self.titleY - 10, love.graphics.getWidth(), self.font:getHeight() + 10)
 
         -- text

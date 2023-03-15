@@ -50,6 +50,10 @@ function AudioManager:stop()
     self.tracks[self.trackIdx]:stop()
 end
 
+function AudioManager:setVolume(newVolume)
+    self.tracks[self.trackIdx]:setVolume(newVolume)
+end
+
 function AudioManager:setTrack(newTrackIdx)
     self.trackIdx = newTrackIdx
     self:stop()

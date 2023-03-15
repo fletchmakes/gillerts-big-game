@@ -109,7 +109,7 @@ end
 function Button:draw()
     love.graphics.push("all")
         -- text bg
-        love.graphics.setColor(COLORS.colorFromHex("#00000060"))
+        love.graphics.setColor(COLORS.colorFromHex("#000000B0"))
         love.graphics.rectangle("fill", self.x + self.offset, self.y, self.width, self.height, 10)
 
         -- rectangle

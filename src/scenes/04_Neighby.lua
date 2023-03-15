@@ -52,6 +52,8 @@ function Neighby:init(rules, parent)
         { image=love.graphics.newImage("assets/art/neighby_house.png"), traits={x=0, y=0, alpha=1} },
         { image=love.graphics.newImage("assets/art/neighby.png"), traits={x=450, y=150, alpha=1} },
         { image=love.graphics.newImage("assets/art/neighbydad_1.png"), traits={x=100, y=150, alpha=0} },
+        { image=love.graphics.newImage("assets/art/dad2.png"), traits={x=700, y=150, alpha=0} },
+        { image=love.graphics.newImage("assets/art/gillert.png"), traits={x=150, y=200, alpha=0} }
     }
 
     view.pages = {
@@ -59,19 +61,26 @@ function Neighby:init(rules, parent)
         function()
             parent.flux.to(view.images[2].traits, 1, {alpha=1})
             parent.flux.to(view.images[3].traits, 1, {x=100, alpha=0})
+            parent.flux.to(view.images[4].traits, 1, {x=700, alpha=0})
         end,
         -- page 2
         function()
             parent.flux.to(view.images[2].traits, 1, {alpha=0.5})
             parent.flux.to(view.images[3].traits, 1, {x=150, alpha=1})
+            parent.flux.to(view.images[4].traits, 1, {x=600, alpha=1})
         end,
         -- page 3
         function()
             parent.flux.to(view.images[2].traits, 1, {alpha=1})
             parent.flux.to(view.images[3].traits, 1, {alpha=0.3})
+            parent.flux.to(view.images[4].traits, 1, {alpha=0.3})
+            parent.flux.to(view.images[5].traits, 1, {alpha=0})
         end,
         -- page 4
         function()
+            parent.flux.to(view.images[3].traits, 1, {x=100, alpha=0})
+            parent.flux.to(view.images[4].traits, 1, {x=700, alpha=0})
+            parent.flux.to(view.images[5].traits, 1, {alpha=1})
         end,
         -- page 5
         function()
@@ -81,9 +90,11 @@ function Neighby:init(rules, parent)
         end,
         -- page 7
         function()
+            parent.flux.to(view.images[2].traits, 1, {alpha=1})
         end,
         -- page 8
         function()
+            parent.flux.to(view.images[2].traits, 1, {alpha=0.5})
         end,
         -- page 9
         function()
@@ -153,7 +164,7 @@ function Neighby:draw()
         end
 
         -- text bg
-        love.graphics.setColor(COLORS.colorFromHex("#00000060"))
+        love.graphics.setColor(COLORS.colorFromHex("#000000B0"))
         love.graphics.rectangle("fill", self.offset, 0, love.graphics.getWidth(), (self.font:getHeight() * 2) + 40)
 
         -- text

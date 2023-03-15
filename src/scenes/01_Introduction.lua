@@ -120,7 +120,7 @@ function Introduction:draw()
         love.graphics.draw(self.gillertVersion, imageX + self.offset, imageY + self.gillertYOffset)
 
         -- text bg
-        love.graphics.setColor(COLORS.colorFromHex("#00000060"))
+        love.graphics.setColor(COLORS.colorFromHex("#000000B0"))
         love.graphics.rectangle("fill", self.offset, 0, love.graphics.getWidth(), (self.font:getHeight() * 2) + 40)
 
         -- text

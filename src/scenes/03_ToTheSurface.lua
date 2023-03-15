@@ -132,7 +132,7 @@ function ToTheSurface:draw()
 
         if (not self.playing and not self.hasWon) then
             -- text bg
-            love.graphics.setColor(COLORS.colorFromHex("#00000060"))
+            love.graphics.setColor(COLORS.colorFromHex("#000000B0"))
             love.graphics.rectangle("fill", self.offset, 0, love.graphics.getWidth(), (self.font:getHeight() * 2) + 40)
 
             -- text
@@ -141,7 +141,7 @@ function ToTheSurface:draw()
             love.graphics.printf("Click the screen to help Gillert swim to the surface!", 20 + self.offset, 20, love.graphics.getWidth() - 40)
         elseif (self.hasWon) then
             -- text bg
-            love.graphics.setColor(COLORS.colorFromHex("#00000060"))
+            love.graphics.setColor(COLORS.colorFromHex("#000000B0"))
             love.graphics.rectangle("fill", self.offset, 0, love.graphics.getWidth(), (self.font:getHeight() * 2) + 40)
 
             -- text

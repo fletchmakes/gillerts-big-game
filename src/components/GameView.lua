@@ -51,11 +51,11 @@ function GameView:new(rules)
         :addHeight(Plan.relative(1))
 
     gameView.scenes = {
-        MainMenu:init(rules, gameView),
-        Introduction:init(rules, gameView),
-        MermaidFamily:init(rules, gameView),
-        ToTheSurface:init(rules, gameView),
-        Neighby:init(rules, gameView),
+        -- MainMenu:init(rules, gameView),
+        -- Introduction:init(rules, gameView),
+        -- MermaidFamily:init(rules, gameView),
+        -- ToTheSurface:init(rules, gameView),
+        -- Neighby:init(rules, gameView),
         SurfaceSchool:init(rules, gameView)
     }
     gameView.sceneIdx = 1
@@ -70,6 +70,7 @@ function GameView:new(rules)
     gameView.audioManager:play()
 
     gameView.sceneOffset = 0
+    gameView.volume = 1
 
     return gameView
 end
@@ -141,6 +142,22 @@ function GameView:previousScene()
             for _,button in ipairs(self.scene.buttons) do
                 button:enable()
             end
+        end)
+end
+
+function GameView:LowerVolume()
+    self.flux.to(self, 1, {volume=0})
+        :ease("quadinout")
+        :onupdate(function()
+            self.audioManager:setVolume(self.volume)
+        end)
+end
+
+function GameView:RaiseVolume()
+    self.flux.to(self, 1, {volume=1})
+        :ease("quadinout")
+        :onupdate(function()
+            self.audioManager:setVolume(self.volume)
         end)
 end
 
