@@ -22,7 +22,7 @@
 
 
 -- inspo taken from: https://love2d.org/forums/viewtopic.php?t=9395
-function colorFromHex(hex)
+local function colorFromHex(hex)
     local splitToRGB = {}
     
     -- check for leading pound
@@ -39,10 +39,15 @@ function colorFromHex(hex)
     return splitToRGB
 end
 
+local white = {1, 1, 1}
+local black = {0, 0, 0}
+local textBackground = colorFromHex("#000000B0")
+local dialogue = colorFromHex("#ffa696")
+
 return {
     colorFromHex = colorFromHex,
-    white = {1, 1, 1},
-    black = {0, 0, 0},
-    textBackground = colorFromHex("#000000B0"),
-    dialogue = colorFromeHex("#ffa696")
+    white = white,
+    black = black,
+    textBackground = textBackground,
+    dialogue = dialogue
 }
