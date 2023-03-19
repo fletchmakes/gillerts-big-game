@@ -147,7 +147,7 @@ function GameView:previousScene()
         end)
 end
 
-function GameView:LowerVolume()
+function GameView:lowerVolume()
     self.flux.to(self, 1, {volume=0})
         :ease("quadinout")
         :onupdate(function()
@@ -155,7 +155,7 @@ function GameView:LowerVolume()
         end)
 end
 
-function GameView:RaiseVolume()
+function GameView:raiseVolume()
     self.flux.to(self, 1, {volume=1})
         :ease("quadinout")
         :onupdate(function()
@@ -175,7 +175,7 @@ end
 
 function GameView:draw()
     love.graphics.push("all")
-        local color = COLORS.colorFromHex("#000000")
+        local color = COLORS.black
         love.graphics.setColor(color)
         love.graphics.rectangle("fill", self.x, self.y, self.w, self.h)
     love.graphics.pop()

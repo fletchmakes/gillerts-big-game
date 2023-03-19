@@ -22,83 +22,44 @@
 
 local Plan = require "libs.plan.plan"
 local Container = Plan.Container
-local Neighby = Container:extend()
+local EmptyPage = Container:extend()
 
 local COLORS = require "utils.Colors"
 local Button = require "components.Button"
 
-function Neighby:init(rules, parent)
+function EmptyPage:init(rules, parent)
     -- initialises all the container fields
-    local view = Neighby.super.new(self, rules)
+    local view = EmptyPage.super.new(self, rules)
 
     view.offset = 0
-    view.animationStart = love.timer.getTime()
 
     view.font = love.graphics.newFont("assets/art/WindstilChonker-Regular.ttf", 40)
 
     view.text = {
-        {COLORS.dialogue, "\"Hi, I'm Neighby!!\""},
-        {COLORS.white, "Neighby's parents were centaurs, but it was clear that Neighby was different."},
-        {COLORS.white, "Instead of a human torso and horse body, Neighby's features were reversed, just like Gillert!"},
-        {COLORS.dialogue, "\"I've been so excited to meet you!\""},
-        {COLORS.dialogue, "\"We'll both be first years at Surface High School this fall!\""},
-        {COLORS.dialogue, "\"I'm looking forward to starting the year having already made a friend.\""},
-        {COLORS.white, "And they bonded right away."},
-        {COLORS.dialogue, "\"Friend,\"", COLORS.white, " Gillert thought."},
-        {COLORS.dialogue, "\"I finally know how it feels to have a friend.\""}
+        -- {COLORS.white, "and without a tail, Gillert couldn't swim as well as other mermaids."},
     }
 
     view.images = {
-        { image=love.graphics.newImage("assets/art/neighby_house.png"), traits={x=0, y=0, alpha=1} },
-        { image=love.graphics.newImage("assets/art/neighby.png"), traits={x=450, y=150, alpha=1} },
-        { image=love.graphics.newImage("assets/art/neighbydad_1.png"), traits={x=100, y=150, alpha=0} },
-        { image=love.graphics.newImage("assets/art/dad2.png"), traits={x=700, y=150, alpha=0} },
-        { image=love.graphics.newImage("assets/art/gillert.png"), traits={x=150, y=200, alpha=0} }
+        -- { image=love.graphics.newImage("assets/art/water_bg.png"), traits={x=0, y=0, alpha=1} },
     }
 
     view.pages = {
         -- page 1
-        function()
-            parent.flux.to(view.images[2].traits, 1, {alpha=1})
-            parent.flux.to(view.images[3].traits, 1, {x=100, alpha=0})
-            parent.flux.to(view.images[4].traits, 1, {x=700, alpha=0})
+        function() 
+            -- parent.flux.to(view.images[2].traits, 1, { y=290 }):ease("quadinout")
         end,
         -- page 2
         function()
-            parent.flux.to(view.images[2].traits, 1, {alpha=0.5})
-            parent.flux.to(view.images[3].traits, 1, {x=150, alpha=1})
-            parent.flux.to(view.images[4].traits, 1, {x=600, alpha=1})
         end,
         -- page 3
         function()
-            parent.flux.to(view.images[2].traits, 1, {alpha=1})
-            parent.flux.to(view.images[3].traits, 1, {alpha=0.3})
-            parent.flux.to(view.images[4].traits, 1, {alpha=0.3})
-            parent.flux.to(view.images[5].traits, 1, {alpha=0})
         end,
         -- page 4
         function()
-            parent.flux.to(view.images[3].traits, 1, {x=100, alpha=0})
-            parent.flux.to(view.images[4].traits, 1, {x=700, alpha=0})
-            parent.flux.to(view.images[5].traits, 1, {alpha=1})
         end,
         -- page 5
         function()
         end,
-        -- page 6
-        function()
-        end,
-        -- page 7
-        function()
-            parent.flux.to(view.images[2].traits, 1, {alpha=1})
-        end,
-        -- page 8
-        function()
-            parent.flux.to(view.images[2].traits, 1, {alpha=0.5})
-        end,
-        -- page 9
-        function()
-        end
     }
 
     view.pageIdx = 1
@@ -137,25 +98,25 @@ function Neighby:init(rules, parent)
     return view
 end
 
-function Neighby:changePage(offset)
+function EmptyPage:changePage(offset)
     self.pageIdx = self.pageIdx + offset
     self.pages[self.pageIdx]()
 end
 
-function Neighby:setOffset(offset)
+function EmptyPage:setOffset(offset)
     self.offset = offset
     for _,button in ipairs(self.buttons) do
         button:setOffset(offset)
     end
 end
 
-function Neighby:update( dt )
+function EmptyPage:update( dt )
     for _,button in ipairs(self.buttons) do
         button:update(dt)
     end
 end
 
-function Neighby:draw()
+function EmptyPage:draw()
     love.graphics.push("all")
         -- images
         for idx,image in ipairs(self.images) do
@@ -178,4 +139,4 @@ function Neighby:draw()
     end
 end
 
-return Neighby
+return EmptyPage

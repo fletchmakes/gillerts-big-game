@@ -144,31 +144,31 @@ function TheBigGame:draw()
 
         if (not self.playing and not self.hasWon) then
             -- text bg
-            love.graphics.setColor(COLORS.colorFromHex("#000000B0"))
+            love.graphics.setColor(COLORS.textBackground)
             love.graphics.rectangle("fill", self.offset, 0, love.graphics.getWidth(), (self.font:getHeight() * 2) + 40)
 
             -- text
             love.graphics.setFont(self.font)
-            love.graphics.setColor(COLORS.colorFromHex("#FFFFFF"))
+            love.graphics.setColor(COLORS.white)
             love.graphics.printf("Click on the targets to shoot the ball!", 20 + self.offset, 20, love.graphics.getWidth() - 40)
 
         elseif (self.playing) then
             -- text bg
-            love.graphics.setColor(COLORS.colorFromHex("#000000B0"))
+            love.graphics.setColor(COLORS.textBackground)
             love.graphics.rectangle("fill", self.offset, 0, love.graphics.getWidth(), (self.font:getHeight()) + 40)
 
             -- text
             love.graphics.setFont(self.font)
-            love.graphics.setColor(COLORS.colorFromHex("#FFFFFF"))
+            love.graphics.setColor(COLORS.white)
             love.graphics.print("GOALS MADE: "..tostring(self.targetsHit), 20, 20)
         elseif (self.hasWon) then
             -- text bg
-            love.graphics.setColor(COLORS.colorFromHex("#000000B0"))
+            love.graphics.setColor(COLORS.textBackground)
             love.graphics.rectangle("fill", self.offset, 0, love.graphics.getWidth(), (self.font:getHeight() * 2) + 40)
 
             -- text
             love.graphics.setFont(self.font)
-            love.graphics.setColor(COLORS.colorFromHex("#FFFFFF"))
+            love.graphics.setColor(COLORS.white)
             love.graphics.printf("Gillert finally made it to the surface, where his host family was waiting.", 20 + self.offset, 20, love.graphics.getWidth() - 40)
         end
     love.graphics.pop()

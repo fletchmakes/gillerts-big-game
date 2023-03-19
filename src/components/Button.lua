@@ -109,17 +109,17 @@ end
 function Button:draw()
     love.graphics.push("all")
         -- text bg
-        love.graphics.setColor(COLORS.colorFromHex("#000000B0"))
+        love.graphics.setColor(COLORS.textBackground)
         love.graphics.rectangle("fill", self.x + self.offset, self.y, self.width, self.height, 10)
 
         -- rectangle
         love.graphics.setLineWidth(5)
-        love.graphics.setColor(COLORS.colorFromHex("#FFFFFF"))
+        love.graphics.setColor(COLORS.white)
         love.graphics.rectangle(self.fillMode, self.x + self.offset, self.y, self.width, self.height, 10)
 
         -- text
         love.graphics.setFont(self.font)
-        love.graphics.setColor(COLORS.colorFromHex(self.textColor))
+        love.graphics.setColor(self.textColor)
         love.graphics.print(self.text, self.textX + self.offset, self.textY)
     love.graphics.pop()
 end

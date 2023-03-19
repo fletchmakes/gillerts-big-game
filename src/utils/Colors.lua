@@ -40,5 +40,9 @@ function colorFromHex(hex)
 end
 
 return {
-    colorFromHex = colorFromHex
+    colorFromHex = colorFromHex,
+    white = {1, 1, 1},
+    black = {0, 0, 0},
+    textBackground = colorFromHex("#000000B0"),
+    dialogue = colorFromeHex("#ffa696")
 }

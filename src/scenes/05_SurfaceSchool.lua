@@ -37,13 +37,13 @@ function SurfaceSchool:init(rules, parent)
     view.font = love.graphics.newFont("assets/art/WindstilChonker-Regular.ttf", 40)
 
     view.text = {
-        {COLORS.colorFromHex("#FFFFFF"), "Gillert immediately felt overwhelmed at Surface High."},
-        {COLORS.colorFromHex("#FFFFFF"), "Without water to slow things down, the hallways were crowded and chaotic."},
-        {COLORS.colorFromHex("#FFFFFF"), "Students talked loudly with each other at their lockers, but when Gillert walked by, ripples of awed silence followed him."},
-        {COLORS.colorFromHex("#FFFFFF"), "Soon afterwards, the snickers started."},
-        {COLORS.colorFromHex("#FFFFFF"), "Then a voice from behind him shouted,", COLORS.colorFromHex("#ffa696"), " \"You look like a FISH OUT OF WATER!\""},
-        {COLORS.colorFromHex("#FFFFFF"), "Neighby rushed Gillert to an empty classroom nearby."},
-        {COLORS.colorFromHex("#FFFFFF"), "And Gillert started to cry."},
+        {COLORS.white, "Gillert immediately felt overwhelmed at Surface High."},
+        {COLORS.white, "Without water to slow things down, the hallways were crowded and chaotic."},
+        {COLORS.white, "Students talked loudly with each other at their lockers, but when Gillert walked by, ripples of awed silence followed him."},
+        {COLORS.white, "Soon afterwards, the snickers started."},
+        {COLORS.white, "Then a voice from behind him shouted,", COLORS.dialogue, " \"You look like a FISH OUT OF WATER!\""},
+        {COLORS.white, "Neighby rushed Gillert to an empty classroom nearby."},
+        {COLORS.white, "And Gillert started to cry."},
     }
 
     view.images = {
@@ -60,15 +60,15 @@ function SurfaceSchool:init(rules, parent)
         end,
         -- page 2
         function()
-            parent:RaiseVolume()
+            parent:raiseVolume()
         end,
         -- page 3
         function()
-            parent:LowerVolume()
+            parent:lowerVolume()
         end,
         -- page 4
         function()
-            parent:RaiseVolume()
+            parent:raiseVolume()
         end,
         -- page 5
         function()
@@ -154,12 +154,12 @@ function SurfaceSchool:draw()
         end
 
         -- text bg
-        love.graphics.setColor(COLORS.colorFromHex("#000000B0"))
+        love.graphics.setColor(COLORS.textBackground)
         love.graphics.rectangle("fill", self.offset, 0, love.graphics.getWidth(), (self.font:getHeight() * 2) + 40)
 
         -- text
         love.graphics.setFont(self.font)
-        love.graphics.setColor(COLORS.colorFromHex("#FFFFFF"))
+        love.graphics.setColor(COLORS.white)
         love.graphics.printf(self.text[self.pageIdx], 20 + self.offset, 20, love.graphics.getWidth() - 40)
     love.graphics.pop()
 

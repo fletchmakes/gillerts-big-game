@@ -47,10 +47,10 @@ function Introduction:init(rules, parent)
     view.gillertVersion = view.gillertBlack
 
     view.text = {
-        {COLORS.colorFromHex("#FFFFFF"), "This is the story of Gillert."},
-        {COLORS.colorFromHex("#FFFFFF"), "Who is Gillert?"},
-        {COLORS.colorFromHex("#FFFFFF"), "Born to two mermaid parents, Gillert's genes somehow got swapped."},
-        {COLORS.colorFromHex("#FFFFFF"), "And thus, the first reverse-mermaid was born."}
+        {COLORS.white, "This is the story of Gillert."},
+        {COLORS.white, "Who is Gillert?"},
+        {COLORS.white, "Born to two mermaid parents, Gillert's genes somehow got swapped."},
+        {COLORS.white, "And thus, the first reverse-mermaid was born."}
     }
     view.textIdx = 1
 
@@ -120,12 +120,12 @@ function Introduction:draw()
         love.graphics.draw(self.gillertVersion, imageX + self.offset, imageY + self.gillertYOffset)
 
         -- text bg
-        love.graphics.setColor(COLORS.colorFromHex("#000000B0"))
+        love.graphics.setColor(COLORS.textBackground)
         love.graphics.rectangle("fill", self.offset, 0, love.graphics.getWidth(), (self.font:getHeight() * 2) + 40)
 
         -- text
         love.graphics.setFont(self.font)
-        love.graphics.setColor(COLORS.colorFromHex("#FFFFFF"))
+        love.graphics.setColor(COLORS.white)
         love.graphics.printf(self.text[self.textIdx], 20 + self.offset, 20, love.graphics.getWidth() - 40)
     love.graphics.pop()
 

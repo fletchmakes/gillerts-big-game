@@ -38,18 +38,18 @@ function MermaidFamily:init(rules, parent)
     view.font = love.graphics.newFont("assets/art/WindstilChonker-Regular.ttf", 40)
 
     view.text = {
-        {COLORS.colorFromHex("#FFFFFF"), "Unfortunately, unique doesn't always mean well-liked."},
-        {COLORS.colorFromHex("#FFFFFF"), "Gillert was an outcast among his mermaid community."},
-        {COLORS.colorFromHex("#FFFFFF"), "He had no friends and was constantly teased by the other mermaid kids at school."},
-        {COLORS.colorFromHex("#FFFFFF"), "On his fourteenth birthday, his mermaid moms knew something needed to change."},
-        {COLORS.colorFromHex("#ffa696"), "\"Gillert, we know you've been having a hard time at school.\""},
-        {COLORS.colorFromHex("#ffa696"), "\"I think you know your mama and I are involved in an online support group on Fishbook...\""},
-        {COLORS.colorFromHex("#ffa696"), "\"...for parents of reverse-mythical creatures.\""},
-        {COLORS.colorFromHex("#ffa696"), "\"One couple we met in the group would be willing to have you stay with them...\""},
-        {COLORS.colorFromHex("#ffa696"), "\"...so you can go to school on the surface.\""},
-        {COLORS.colorFromHex("#FFFFFF"), "And so, Gillert packed his things, said goodbye, and left for the surface."},
-        {COLORS.colorFromHex("#FFFFFF"), "But the journey to the surface was hard and long,"},
-        {COLORS.colorFromHex("#FFFFFF"), "and without a tail, Gillert couldn't swim as well as other mermaids."},
+        {COLORS.white, "Unfortunately, unique doesn't always mean well-liked."},
+        {COLORS.white, "Gillert was an outcast among his mermaid community."},
+        {COLORS.white, "He had no friends and was constantly teased by the other mermaid kids at school."},
+        {COLORS.white, "On his fourteenth birthday, his mermaid moms knew something needed to change."},
+        {COLORS.dialogue, "\"Gillert, we know you've been having a hard time at school.\""},
+        {COLORS.dialogue, "\"I think you know your mama and I are involved in an online support group on Fishbook...\""},
+        {COLORS.dialogue, "\"...for parents of reverse-mythical creatures.\""},
+        {COLORS.dialogue, "\"One couple we met in the group would be willing to have you stay with them...\""},
+        {COLORS.dialogue, "\"...so you can go to school on the surface.\""},
+        {COLORS.white, "And so, Gillert packed his things, said goodbye, and left for the surface."},
+        {COLORS.white, "But the journey to the surface was hard and long,"},
+        {COLORS.white, "and without a tail, Gillert couldn't swim as well as other mermaids."},
     }
 
     view.images = {
@@ -192,12 +192,12 @@ function MermaidFamily:draw()
         end
 
         -- text bg
-        love.graphics.setColor(COLORS.colorFromHex("#000000B0"))
+        love.graphics.setColor(COLORS.textBackground)
         love.graphics.rectangle("fill", self.offset, 0, love.graphics.getWidth(), (self.font:getHeight() * 2) + 40)
 
         -- text
         love.graphics.setFont(self.font)
-        love.graphics.setColor(COLORS.colorFromHex("#FFFFFF"))
+        love.graphics.setColor(COLORS.white)
         love.graphics.printf(self.text[self.pageIdx], 20 + self.offset, 20, love.graphics.getWidth() - 40)
     love.graphics.pop()
 
