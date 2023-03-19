@@ -39,7 +39,7 @@ end
 
 function AudioManager:play()
     self.tracks[self.trackIdx]:setLooping(true)
-    self.tracks[self.trackIdx]:play()
+    -- self.tracks[self.trackIdx]:play()
 end
 
 function AudioManager:pause()

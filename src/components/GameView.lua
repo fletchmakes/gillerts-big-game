@@ -52,12 +52,12 @@ function GameView:new(rules)
         :addHeight(Plan.relative(1))
 
     gameView.scenes = {
-        -- MainMenu:init(rules, gameView),
-        -- Introduction:init(rules, gameView),
-        -- MermaidFamily:init(rules, gameView),
-        -- ToTheSurface:init(rules, gameView),
-        -- Neighby:init(rules, gameView),
-        -- SurfaceSchool:init(rules, gameView)
+        MainMenu:init(rules, gameView),
+        Introduction:init(rules, gameView),
+        MermaidFamily:init(rules, gameView),
+        ToTheSurface:init(rules, gameView),
+        Neighby:init(rules, gameView),
+        SurfaceSchool:init(rules, gameView),
         TheBigGame:init(rules, gameView)
     }
     gameView.sceneIdx = 1
