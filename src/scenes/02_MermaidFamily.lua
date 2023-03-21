@@ -47,7 +47,7 @@ function MermaidFamily:init(rules, parent)
         {COLORS.dialogue, "\"...for parents of reverse-mythical creatures.\""},
         {COLORS.dialogue, "\"One couple we met in the group would be willing to have you stay with them...\""},
         {COLORS.dialogue, "\"...so you can go to school on the surface.\""},
-        {COLORS.white, "And so, Gillert packed his things, said goodbye, and left for the surface."},
+        {COLORS.white, "And so, Gillert packed his things, said goodbye, and left."},
         {COLORS.white, "But the journey to the surface was hard and long,"},
         {COLORS.white, "and without a tail, Gillert couldn't swim as well as other mermaids."},
     }

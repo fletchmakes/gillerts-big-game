@@ -57,7 +57,7 @@ function SavingTheDay:init(rules, parent)
         {COLORS.dialogue, "\"Hey, you really do have a natural talent for soccer, Gillert,\"", COLORS.white, " Ryan said."},
         {COLORS.gillert, "\"Wow, thanks. That means a lot. I've never really been told I'm good at anything.\""},
         {COLORS.white, "A thought occurred to Gillert. ", COLORS.gillert, "\"Ryan, why don't you teach me how to play?\""},
-        {COLORS.white, "Ryan started to jump and clap his hands. ", COLORS.dialogue, "\"That sounds perfect! The school soccer team tryouts are next week.\""},
+        {COLORS.white, "Ryan started to jump and clap their hands. ", COLORS.dialogue, "\"That sounds perfect! The school soccer team tryouts are next week.\""},
         {COLORS.dialogue, "\"I'm sure I could have you ready by then if you wanted.\""},
         {COLORS.gillert, "\"I'd be willing to give it a shot.\""},
         {COLORS.white, "Gillert and Ryan smiled and walked toward the buses."},

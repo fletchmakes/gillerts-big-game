@@ -37,6 +37,7 @@ function Neighby:init(rules, parent)
     view.font = love.graphics.newFont("assets/art/WindstilChonker-Regular.ttf", 40)
 
     view.text = {
+        {COLORS.white, "Gillert finally made it to the surface, where his host family was waiting."},
         {COLORS.dialogue, "\"Hi, I'm Neighby!!\""},
         {COLORS.white, "Neighby's parents were centaurs, but it was clear that Neighby was different."},
         {COLORS.white, "Instead of a human torso and horse body, Neighby's features were reversed, just like Gillert!"},
@@ -50,13 +51,17 @@ function Neighby:init(rules, parent)
 
     view.images = {
         { image=love.graphics.newImage("assets/art/neighby_house.png"), traits={x=0, y=0, alpha=1} },
-        { image=love.graphics.newImage("assets/art/neighby.png"), traits={x=450, y=150, alpha=1} },
+        { image=love.graphics.newImage("assets/art/neighby.png"), traits={x=450, y=150, alpha=0} },
         { image=love.graphics.newImage("assets/art/neighbydad_1.png"), traits={x=100, y=150, alpha=0} },
         { image=love.graphics.newImage("assets/art/dad2.png"), traits={x=700, y=150, alpha=0} },
         { image=love.graphics.newImage("assets/art/gillert.png"), traits={x=150, y=200, alpha=0} }
     }
 
     view.pages = {
+        -- page 0
+        function()
+            parent.flux.to(view.images[2].traits, 0, {alpha=0})
+        end
         -- page 1
         function()
             parent.flux.to(view.images[2].traits, 1, {alpha=1})

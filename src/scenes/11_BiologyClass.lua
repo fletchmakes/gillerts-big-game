@@ -37,7 +37,7 @@ function BiologyClass:init(rules, parent)
 
     view.text = {
         {COLORS.dialogue, "\"What makes different species different from one another?\"", COLORS.white, " asked the teacher."},
-        {COLORS.white, "A few of the other students volunteers answers such as fins vs. legs, gills vs. lungs, scales vs. fur, and so on."},
+        {COLORS.white, "A few of the other students volunteered answers such as fins vs. legs, gills vs. lungs, scales vs. fur, and so on."},
         {COLORS.dialogue, "\"And what makes different species similar to one another?\"", COLORS.white, " the teacher posed."},
         {COLORS.white, "The class was perplexed by this question."},
         {COLORS.dialogue, "\"They all need others like them in order to survive,\"", COLORS.white, " she followed."},

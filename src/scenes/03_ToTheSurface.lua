@@ -142,7 +142,7 @@ function ToTheSurface:draw()
             -- text
             love.graphics.setFont(self.font)
             love.graphics.setColor(COLORS.white)
-            love.graphics.printf("Gillert finally made it to the surface, where his host family was waiting.", 20 + self.offset, 20, love.graphics.getWidth() - 40)
+            love.graphics.printf("Gillert swam for many hours, feeling tired.", 20 + self.offset, 20, love.graphics.getWidth() - 40)
         end
 
         love.graphics.draw(self.gillert, love.graphics.newQuad(113*self.gillertFrame, 0, 113, 116, self.gillert:getDimensions()), self.gillertPos.x + self.offset, self.gillertPos.y)
