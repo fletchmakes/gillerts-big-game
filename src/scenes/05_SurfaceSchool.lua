@@ -84,6 +84,8 @@ function SurfaceSchool:init(rules, parent)
         function()
             parent.flux.to(view.images[3].traits, 1, {alpha=0})
             parent.flux.to(view.images[5].traits, 1, {alpha=1})
+            -- change the music
+            parent.audioManager:setTrack(1)
         end
     }
 

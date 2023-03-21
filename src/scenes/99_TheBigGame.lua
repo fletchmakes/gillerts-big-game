@@ -140,7 +140,7 @@ function TheBigGame:draw()
 
         love.graphics.setColor({1, 0, 0})
         love.graphics.setLineWidth(5)
-        love.graphics.circle("line", self.target.x, self.target.y, self.target.r)
+        love.graphics.circle("line", self.target.x + self.offset, self.target.y, self.target.r)
 
         if (not self.playing and not self.hasWon) then
             -- text bg

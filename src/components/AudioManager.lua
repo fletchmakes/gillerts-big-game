@@ -29,7 +29,8 @@ function AudioManager:new()
     self.__index = self
 
     manager.tracks =  {
-        love.audio.newSource("assets/music/BGM1_loop.mp3", "stream")
+        love.audio.newSource("assets/music/BGM1_loop.mp3", "stream"),
+        love.audio.newSource("assets/music/BGM2.mp3", "stream")
     }
 
     manager.trackIdx = 1
@@ -39,7 +40,7 @@ end
 
 function AudioManager:play()
     self.tracks[self.trackIdx]:setLooping(true)
-    -- self.tracks[self.trackIdx]:play()
+    self.tracks[self.trackIdx]:play()
 end
 
 function AudioManager:pause()
@@ -55,8 +56,10 @@ function AudioManager:setVolume(newVolume)
 end
 
 function AudioManager:setTrack(newTrackIdx)
-    self.trackIdx = newTrackIdx
+    if (self.trackIdx == newTrackIdx) then return end
+
     self:stop()
+    self.trackIdx = newTrackIdx
     self:play()
 end
 

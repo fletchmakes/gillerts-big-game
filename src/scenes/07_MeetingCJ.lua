@@ -61,7 +61,8 @@ function MeetingCJ:init(rules, parent)
     view.pages = {
         -- page 1
         function() 
-            -- parent.flux.to(view.images[2].traits, 1, { y=290 }):ease("quadinout")
+            -- change the music
+            parent.audioManager:setTrack(2)
         end,
         -- page 2
         function()

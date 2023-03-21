@@ -58,6 +58,12 @@ function GameView:new(rules)
         :addWidth(Plan.relative(1))
         :addHeight(Plan.relative(1))
 
+    gameView.next = nil
+    gameView.tween = nil
+
+    gameView.audioManager = AudioManager:new()
+    gameView.audioManager:play()
+
     gameView.scenes = {
         MainMenu:init(rules, gameView),
         Introduction:init(rules, gameView),
@@ -75,15 +81,8 @@ function GameView:new(rules)
         TheBigGame:init(rules, gameView)
     }
     gameView.sceneIdx = 1
-
     gameView.scene = gameView.scenes[1]
     gameView:addChild(gameView.scene)
-
-    gameView.next = nil
-    gameView.tween = nil
-
-    gameView.audioManager = AudioManager:new()
-    gameView.audioManager:play()
 
     gameView.sceneOffset = 0
     gameView.volume = 1
@@ -123,6 +122,10 @@ function GameView:nextScene()
             for _,button in ipairs(self.scene.buttons) do
                 button:enable()
             end
+
+            if (self.scene.pages ~= nil) then
+                self.scene.pages[self.scene.pageIdx]()
+            end
         end)
 end
 
@@ -157,6 +160,10 @@ function GameView:previousScene()
 
             for _,button in ipairs(self.scene.buttons) do
                 button:enable()
+            end
+
+            if (self.scene.pages ~= nil) then
+                self.scene.pages[self.scene.pageIdx]()
             end
         end)
 end
