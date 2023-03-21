@@ -56,14 +56,13 @@ function MeetingCJ:init(rules, parent)
 
     view.images = {
         { image=love.graphics.newImage("assets/art/classroom.png"), traits={x=0, y=0, alpha=1} },
-        { image=love.graphics.newImage("assets/art/gillert.png"), traits={x=200, y=175, alpha=1} },
+        { image=love.graphics.newImage("assets/art/gillert.png"), traits={x=400, y=175, alpha=1} },
+        { image=love.graphics.newImage("assets/art/cj.png"), traits={x=700, y=175, alpha=0} },
     }
 
     view.pages = {
         -- page 1
         function() 
-            -- change the music
-            parent.audioManager:setTrack(2)
         end,
         -- page 2
         function()
@@ -76,31 +75,38 @@ function MeetingCJ:init(rules, parent)
         end,
         -- page 5
         function()
+            parent.flux.to(view.images[2].traits, 1, {x=400})
+            parent.flux.to(view.images[3].traits, 1, {alpha=0, x=700})
         end,
         -- page 6
         function()
-            parent.flux.to(view.images[2].traits, 1, {alpha=1})
+            parent.flux.to(view.images[2].traits, 1, {x=200, alpha=1})
+            parent.flux.to(view.images[3].traits, 1, {alpha=1, x=600})
         end,
         -- page 7
         function()
-            -- fade in CJ
             parent.flux.to(view.images[2].traits, 1, {alpha=0.3})
+            parent.flux.to(view.images[3].traits, 1, {alpha=1})
         end,
         -- page 8
         function()
             parent.flux.to(view.images[2].traits, 1, {alpha=1})
+            parent.flux.to(view.images[3].traits, 1, {alpha=0.3})
         end,
         -- page 9
         function()
             parent.flux.to(view.images[2].traits, 1, {alpha=0.3})
+            parent.flux.to(view.images[3].traits, 1, {alpha=1})
         end,
         -- page 10
         function()
             parent.flux.to(view.images[2].traits, 1, {alpha=1})
+            parent.flux.to(view.images[3].traits, 1, {alpha=0.3})
         end,
         -- page 11
         function()
             parent.flux.to(view.images[2].traits, 1, {alpha=0.3})
+            parent.flux.to(view.images[3].traits, 1, {alpha=1})
         end,
         -- page 12
         function()
@@ -112,6 +118,7 @@ function MeetingCJ:init(rules, parent)
         -- page 14
         function()
             parent.flux.to(view.images[2].traits, 1, {alpha=1})
+            parent.flux.to(view.images[3].traits, 1, {alpha=1})
         end,
         -- page 15
         function()

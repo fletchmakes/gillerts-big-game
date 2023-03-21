@@ -141,10 +141,6 @@ function TheBigGame:draw()
         love.graphics.draw(self.gillert, love.graphics.newQuad(101*math.floor(self.gillertFrame), 0, 101, 138, self.gillert:getDimensions()), self.gillertPos.x + self.offset, self.gillertPos.y)
         love.graphics.draw(self.ball, self.ballPos.x + self.offset, self.ballPos.y)
 
-        love.graphics.setColor({1, 0, 0})
-        love.graphics.setLineWidth(5)
-        love.graphics.circle("line", self.target.x + self.offset, self.target.y, self.target.r)
-
         if (not self.playing and not self.hasWon) then
             -- text bg
             love.graphics.setColor(COLORS.textBackground)
@@ -156,6 +152,11 @@ function TheBigGame:draw()
             love.graphics.printf("Click on the targets to shoot the ball!", 20 + self.offset, 20, love.graphics.getWidth() - 40)
 
         elseif (self.playing) then
+            -- target
+            love.graphics.setColor({1, 0, 0})
+            love.graphics.setLineWidth(5)
+            love.graphics.circle("line", self.target.x + self.offset, self.target.y, self.target.r)
+
             -- text bg
             love.graphics.setColor(COLORS.textBackground)
             love.graphics.rectangle("fill", self.offset, 0, love.graphics.getWidth(), (self.font:getHeight()) + 40)

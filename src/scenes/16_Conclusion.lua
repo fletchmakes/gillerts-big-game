@@ -49,16 +49,22 @@ function EmptyPage:init(rules, parent)
 
     view.images = {
         { image=love.graphics.newImage("assets/art/goal.png"), traits={x=0, y=0, alpha=1} },
-        { image=love.graphics.newImage("assets/art/gillert.png"), traits={x=200, y=175, alpha=1} },
+        { image=love.graphics.newImage("assets/art/gillert.png"), traits={x=400, y=175, alpha=1} },
+        { image=love.graphics.newImage("assets/art/ryan.png"), traits={x=550, y=125, alpha=0} },
+        { image=love.graphics.newImage("assets/art/neighby.png"), traits={x=625, y=250, alpha=0} },
+        { image=love.graphics.newImage("assets/art/cj.png"), traits={x=325, y=250, alpha=0} },
     }
 
     view.pages = {
         -- page 1
         function() 
-            -- parent.flux.to(view.images[2].traits, 1, { y=290 }):ease("quadinout")
         end,
         -- page 2
         function()
+            parent.flux.to(view.images[2].traits, 1, { y=75 }):ease("quadinout")
+                :oncomplete(function()
+                    parent.flux.to(view.images[2].traits, 1, { y=175 }):ease("quadinout")
+                end)
         end,
         -- page 3
         function()
@@ -77,9 +83,17 @@ function EmptyPage:init(rules, parent)
         end,
         -- page 8
         function()
+            parent.flux.to(view.images[2].traits, 1, { x=400 }):ease("quadinout")
+            parent.flux.to(view.images[3].traits, 1, { alpha=0 }):ease("quadinout")
+            parent.flux.to(view.images[4].traits, 1, { alpha=0 }):ease("quadinout")
+            parent.flux.to(view.images[5].traits, 1, { alpha=0 }):ease("quadinout")
         end,
         -- page 9
         function()
+            parent.flux.to(view.images[2].traits, 1, { x=200 }):ease("quadinout")
+            parent.flux.to(view.images[3].traits, 1, { alpha=1 }):ease("quadinout")
+            parent.flux.to(view.images[4].traits, 1, { alpha=1 }):ease("quadinout")
+            parent.flux.to(view.images[5].traits, 1, { alpha=1 }):ease("quadinout")
         end,
     }
 

@@ -48,8 +48,10 @@ function MeetingRyan:init(rules, parent)
 
     view.images = {
         { image=love.graphics.newImage("assets/art/school-outside.png"), traits={x=0, y=0, alpha=1} },
-        { image=love.graphics.newImage("assets/art/neighby.png"), traits={x=300, y=75, alpha=1} },
-        { image=love.graphics.newImage("assets/art/gillert.png"), traits={x=200, y=175, alpha=1} },
+        { image=love.graphics.newImage("assets/art/neighby.png"), traits={x=250, y=75, alpha=1} },
+        { image=love.graphics.newImage("assets/art/gillert.png"), traits={x=100, y=175, alpha=1} },
+        { image=love.graphics.newImage("assets/art/cj.png"), traits={x=350, y=175, alpha=1} },
+        { image=love.graphics.newImage("assets/art/ryan.png"), traits={x=800, y=175, alpha=0} },
     }
 
     view.pages = {
@@ -62,12 +64,20 @@ function MeetingRyan:init(rules, parent)
         end,
         -- page 3
         function()
+            parent.flux.to(view.images[2].traits, 1, { x=250, alpha=1 }):ease("quadinout")
+            parent.flux.to(view.images[3].traits, 1, { x=100, alpha=1 }):ease("quadinout")
+            parent.flux.to(view.images[4].traits, 1, { x=350, alpha=1 }):ease("quadinout")
         end,
         -- page 4
         function()
+            parent.flux.to(view.images[2].traits, 1, { x=150, alpha=0 }):ease("quadinout")
+            parent.flux.to(view.images[3].traits, 1, { x=0, alpha=0 }):ease("quadinout")
+            parent.flux.to(view.images[4].traits, 1, { x=250, alpha=0 }):ease("quadinout")
+            parent.flux.to(view.images[5].traits, 1, { x=800, alpha=0 }):ease("quadinout")
         end,
         -- page 5
         function()
+            parent.flux.to(view.images[5].traits, 1, { x=700, alpha=1 }):ease("quadinout")
         end,
         -- page 6
         function()

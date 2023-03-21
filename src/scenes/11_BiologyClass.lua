@@ -52,7 +52,8 @@ function BiologyClass:init(rules, parent)
 
     view.images = {
         { image=love.graphics.newImage("assets/art/classroom.png"), traits={x=0, y=0, alpha=1} },
-        { image=love.graphics.newImage("assets/art/gillert.png"), traits={x=200, y=175, alpha=1} },
+        { image=love.graphics.newImage("assets/art/gillert.png"), traits={x=400, y=175, alpha=1} },
+        { image=love.graphics.newImage("assets/art/gillert-cry.png"), traits={x=375, y=100, alpha=0} },
     }
 
     view.pages = {
@@ -77,15 +78,21 @@ function BiologyClass:init(rules, parent)
         end,
         -- page 7
         function()
+            parent.flux.to(view.images[2].traits, 1, { alpha=1 }):ease("quadinout")
+            parent.flux.to(view.images[3].traits, 1, { alpha=0 }):ease("quadinout")
         end,
         -- page 8
         function()
+            parent.flux.to(view.images[2].traits, 1, { alpha=0 }):ease("quadinout")
+            parent.flux.to(view.images[3].traits, 1, { alpha=1 }):ease("quadinout")
         end,
         -- page 9
         function()
+            parent.flux.to(view.images[3].traits, 1, { x=375, alpha=1 }):ease("quadinout")
         end,
         -- page 10
         function()
+            parent.flux.to(view.images[3].traits, 1, { x=675, alpha=0 }):ease("quadinout")
         end,
         -- page 11
         function()

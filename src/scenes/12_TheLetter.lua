@@ -48,14 +48,14 @@ function TheLetter:init(rules, parent)
     }
 
     view.images = {
-        -- { image=love.graphics.newImage("assets/art/water_bg.png"), traits={x=0, y=0, alpha=1} },
-        { image=love.graphics.newImage("assets/art/gillert.png"), traits={x=200, y=175, alpha=1} },
+        { image=love.graphics.newImage("assets/art/park.png"), traits={x=0, y=0, alpha=1} },
+        { image=love.graphics.newImage("assets/art/gillert.png"), traits={x=-100, y=175, alpha=0} },
     }
 
     view.pages = {
         -- page 1
         function() 
-            -- parent.flux.to(view.images[2].traits, 1, { y=290 }):ease("quadinout")
+            parent.flux.to(view.images[2].traits, 1, { x=400, alpha=1 }):ease("quadinout")
         end,
         -- page 2
         function()
@@ -74,9 +74,11 @@ function TheLetter:init(rules, parent)
         end,
         -- page 7
         function()
+            parent.flux.to(view.images[2].traits, 1, { x=400, alpha=1 }):ease("quadinout")
         end,
         -- page 8
         function()
+            parent.flux.to(view.images[2].traits, 1, { x=1000, alpha=0 }):ease("quadinout")
         end,
         -- page 9
         function()
