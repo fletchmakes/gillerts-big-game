@@ -49,6 +49,7 @@ function TheLetter:init(rules, parent)
 
     view.images = {
         -- { image=love.graphics.newImage("assets/art/water_bg.png"), traits={x=0, y=0, alpha=1} },
+        { image=love.graphics.newImage("assets/art/gillert.png"), traits={x=200, y=175, alpha=1} },
     }
 
     view.pages = {

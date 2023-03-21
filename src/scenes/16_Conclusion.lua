@@ -36,7 +36,6 @@ function EmptyPage:init(rules, parent)
     view.font = love.graphics.newFont("assets/art/WindstilChonker-Regular.ttf", 40)
 
     view.text = {
-        {COLORS.white, "He did it! Gillert won the game!"},
         {COLORS.white, "Gillert scored the most goals out of his entire team, including the winning goal."},
         {COLORS.white, "His teammates held him up on their shoulders and chanted his name."},
         {COLORS.white, "After the commotion died down, several of Gillert's teammates approached him."},
@@ -50,6 +49,7 @@ function EmptyPage:init(rules, parent)
 
     view.images = {
         { image=love.graphics.newImage("assets/art/goal.png"), traits={x=0, y=0, alpha=1} },
+        { image=love.graphics.newImage("assets/art/gillert.png"), traits={x=200, y=175, alpha=1} },
     }
 
     view.pages = {
@@ -79,9 +79,6 @@ function EmptyPage:init(rules, parent)
         function()
         end,
         -- page 9
-        function()
-        end,
-        -- page 10
         function()
         end,
     }

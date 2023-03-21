@@ -56,6 +56,7 @@ function MeetingCJ:init(rules, parent)
 
     view.images = {
         { image=love.graphics.newImage("assets/art/classroom.png"), traits={x=0, y=0, alpha=1} },
+        { image=love.graphics.newImage("assets/art/gillert.png"), traits={x=200, y=175, alpha=1} },
     }
 
     view.pages = {
@@ -78,30 +79,39 @@ function MeetingCJ:init(rules, parent)
         end,
         -- page 6
         function()
+            parent.flux.to(view.images[2].traits, 1, {alpha=1})
         end,
         -- page 7
         function()
+            -- fade in CJ
+            parent.flux.to(view.images[2].traits, 1, {alpha=0.3})
         end,
         -- page 8
         function()
+            parent.flux.to(view.images[2].traits, 1, {alpha=1})
         end,
         -- page 9
         function()
+            parent.flux.to(view.images[2].traits, 1, {alpha=0.3})
         end,
         -- page 10
         function()
+            parent.flux.to(view.images[2].traits, 1, {alpha=1})
         end,
         -- page 11
         function()
+            parent.flux.to(view.images[2].traits, 1, {alpha=0.3})
         end,
         -- page 12
         function()
         end,
         -- page 13
         function()
+            parent.flux.to(view.images[2].traits, 1, {alpha=0.3})
         end,
         -- page 14
         function()
+            parent.flux.to(view.images[2].traits, 1, {alpha=1})
         end,
         -- page 15
         function()

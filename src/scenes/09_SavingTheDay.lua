@@ -65,12 +65,12 @@ function SavingTheDay:init(rules, parent)
 
     view.images = {
         { image=love.graphics.newImage("assets/art/school-outside.png"), traits={x=0, y=0, alpha=1} },
+        { image=love.graphics.newImage("assets/art/gillert.png"), traits={x=200, y=175, alpha=1} },
     }
 
     view.pages = {
         -- page 1
         function() 
-            -- parent.flux.to(view.images[2].traits, 1, { y=290 }):ease("quadinout")
         end,
         -- page 2
         function()
@@ -80,27 +80,35 @@ function SavingTheDay:init(rules, parent)
         end,
         -- page 4
         function()
+            parent.flux.to(view.images[2].traits, 1, {alpha=1})
         end,
         -- page 5
         function()
+            parent.flux.to(view.images[2].traits, 1, {alpha=0.3})
         end,
         -- page 6
         function()
+            parent.flux.to(view.images[2].traits, 1, {alpha=1})
         end,
         -- page 7
         function()
+            parent.flux.to(view.images[2].traits, 1, {alpha=0.3})
         end,
         -- page 8
         function()
+            parent.flux.to(view.images[2].traits, 1, {alpha=1})
         end,
         -- page 9
         function()
+            parent.flux.to(view.images[2].traits, 1, {alpha=0.3})
         end,
         -- page 10
         function()
+            parent.flux.to(view.images[2].traits, 1, {alpha=1})
         end,
         -- page 11
         function()
+            parent.flux.to(view.images[2].traits, 1, {alpha=0.3})
         end,
         -- page 12
         function()
@@ -110,39 +118,51 @@ function SavingTheDay:init(rules, parent)
         end,
         -- page 14
         function()
+            parent.flux.to(view.images[2].traits, 1, {alpha=0.3})
         end,
         -- page 15
         function()
+            parent.flux.to(view.images[2].traits, 1, {alpha=1})
         end,
         -- page 16
         function()
+            parent.flux.to(view.images[2].traits, 1, {alpha=0.3})
         end,
         -- page 17
         function()
+            parent.flux.to(view.images[2].traits, 1, {alpha=0.3})
         end,
         -- page 18
         function()
+            parent.flux.to(view.images[2].traits, 1, {alpha=1})
         end,
         -- page 19
         function()
+            parent.flux.to(view.images[2].traits, 1, {alpha=0.3})
         end,
         -- page 20
         function()
+            parent.flux.to(view.images[2].traits, 1, {alpha=1})
         end,
         -- page 21
         function()
+            parent.flux.to(view.images[2].traits, 1, {alpha=1})
         end,
         -- page 22
         function()
+            parent.flux.to(view.images[2].traits, 1, {alpha=0.3})
         end,
         -- page 23
         function()
+            parent.flux.to(view.images[2].traits, 1, {alpha=0.3})
         end,
         -- page 24
         function()
+            parent.flux.to(view.images[2].traits, 1, {alpha=1})
         end,
         -- page 25
         function()
+            parent.flux.to(view.images[2].traits, 1, {alpha=1})
         end,
     }
 

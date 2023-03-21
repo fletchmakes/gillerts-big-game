@@ -92,6 +92,12 @@ function TheBigGame:update( dt )
     self.target.r = 25 + (math.sin((love.timer.getTime() - self.timeStart)*2) * 5)
 
     if (self.playing) then
+        if (not self.hasWon and self.targetsHit >= 5) then
+            self.hasWon = true
+            self.playing = false
+            self.buttons[1]:setText("next")
+        end
+
         if (love.mouse.isDown(1) and not self.ballTween) then
             local mouseX, mouseY = love.mouse.getPosition()
             
@@ -119,13 +125,10 @@ function TheBigGame:update( dt )
         end
 
     elseif (not self.playing and not self.hasWon) then
-        if (love.mouse.isDown(1)) then
+        if (love.mouse.isDown(1) and not self.buttons[1].disabled) then
             self.playing = true
         end
-    else
-
     end
-
     for _,button in ipairs(self.buttons) do
         button:update(dt)
     end
@@ -160,7 +163,7 @@ function TheBigGame:draw()
             -- text
             love.graphics.setFont(self.font)
             love.graphics.setColor(COLORS.white)
-            love.graphics.print("GOALS MADE: "..tostring(self.targetsHit), 20, 20)
+            love.graphics.print("GOALS MADE: "..tostring(self.targetsHit), 20 + self.offset, 20)
         elseif (self.hasWon) then
             -- text bg
             love.graphics.setColor(COLORS.textBackground)
@@ -169,7 +172,7 @@ function TheBigGame:draw()
             -- text
             love.graphics.setFont(self.font)
             love.graphics.setColor(COLORS.white)
-            love.graphics.printf("Gillert finally made it to the surface, where his host family was waiting.", 20 + self.offset, 20, love.graphics.getWidth() - 40)
+            love.graphics.printf("He did it! Gillert won the game!", 20 + self.offset, 20, love.graphics.getWidth() - 40)
         end
     love.graphics.pop()
 

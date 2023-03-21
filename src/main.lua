@@ -53,10 +53,6 @@ end
 
 function love.draw()
     uiRoot:draw()
-
-    local fps = love.timer.getFPS()
-    love.graphics.setColor({1, 1, 1})
-    love.graphics.print("fps: "..tostring(fps), 0, 0)
 end
 
 function love.resize(w, h)
