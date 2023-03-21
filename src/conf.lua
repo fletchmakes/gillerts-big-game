@@ -3,14 +3,13 @@ function love.conf( t )
     -- https://loveref.github.io/#love.conf
     -- game identity
     t.window.title = "Gillert's Big Game"
-    -- t.window.icon = "assets/img/turnip.png"
-    t.console = true
+    t.window.icon = "assets/art/ball.png"
 
     -- window settings
     t.window.width = 1024
     t.window.height = 576
     t.window.borderless = false
-    t.window.resizable = true
+    t.window.resizable = false
     t.window.minwidth = 1024
     t.window.minheight = 576
     t.window.fullscreen = false

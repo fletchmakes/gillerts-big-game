@@ -45,6 +45,8 @@ local SurpriseParty = require "scenes.13_SurpriseParty"
 local TheChampionship = require "scenes.14_TheChampionship"
 local TheBigGame = require "scenes.15_TheBigGame"
 local Conclusion = require "scenes.16_Conclusion"
+local TheEnd = require "scenes.17_TheEnd"
+
 local AudioManager = require "components.AudioManager"
 
 function GameView:new(rules)
@@ -81,7 +83,8 @@ function GameView:new(rules)
         SurpriseParty:init(rules, gameView),
         TheChampionship:init(rules, gameView),
         TheBigGame:init(rules, gameView),
-        Conclusion:init(rules, gameView)
+        Conclusion:init(rules, gameView),
+        TheEnd:init(rules, gameView)
     }
     gameView.sceneIdx = 1
     gameView.scene = gameView.scenes[1]

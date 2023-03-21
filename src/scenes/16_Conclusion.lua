@@ -40,8 +40,10 @@ function EmptyPage:init(rules, parent)
         {COLORS.white, "Gillert scored the most goals out of his entire team, including the winning goal."},
         {COLORS.white, "His teammates held him up on their shoulders and chanted his name."},
         {COLORS.white, "After the commotion died down, several of Gillert's teammates approached him."},
-        {COLORS.dialogue, "\"Hey, Gillert,\"", COLORS.white, " one of them said,", COLORS.dialogue, " \"that was some pretty epic footwork. We were all planning to go out and party. Do you want to come?\""},
-        {COLORS.gillert, "\"No thanks,\"", COLORS.white, " Gillert replied.", COLORS.gillert, " \"I'd rather celebrate with my friends who have always supported me for who I am, not for how well I play.\""},
+        {COLORS.dialogue, "\"Hey, Gillert,\"", COLORS.white, " one of them said,", COLORS.dialogue, " \"that was some pretty epic footwork.\""},
+        {COLORS.dialogue, "\"We were all planning to go out and party. Do you want to come?\""},
+        {COLORS.gillert, "\"No thanks,\"", COLORS.white, " Gillert replied."},
+        {COLORS.gillert, " \"I'd rather celebrate with my friends who have always supported me for who I am, not for how well I play.\""},
         {COLORS.white, "His teammates' jaws dropped in confusion and disbelief."},
         {COLORS.white, "Gillert smiled, turned, and skipped toward the edge of the field, where his friends were waiting for him."},
     }
@@ -74,6 +76,12 @@ function EmptyPage:init(rules, parent)
         function()
         end,
         -- page 8
+        function()
+        end,
+        -- page 9
+        function()
+        end,
+        -- page 10
         function()
         end,
     }
