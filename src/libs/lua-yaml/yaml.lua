@@ -112,7 +112,7 @@ local tokens = {
   {"null",      word("Null"),     const = true, value = nil},
   {"null",      word("NULL"),     const = true, value = nil},
   {"null",      word("~"),        const = true, value = nil},
-  {"id",    "^\"([^\"]-)\" *(:[%s%c])"},
+  {"id",    "^\"([^\"]-)\"*(:[%s%c])"},
   {"id",    "^'([^']-)' *(:[%s%c])"},
   {"string",    "^\"([^\"]-)\"",  force_text = true},
   {"string",    "^'([^']-)'",    force_text = true},

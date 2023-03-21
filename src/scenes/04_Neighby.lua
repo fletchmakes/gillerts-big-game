@@ -44,8 +44,8 @@ function Neighby:init(rules, parent)
         {COLORS.dialogue, "\"We'll both be first years at Surface High School this fall!\""},
         {COLORS.dialogue, "\"I'm looking forward to starting the year having already made a friend.\""},
         {COLORS.white, "And they bonded right away."},
-        {COLORS.dialogue, "\"Friend,\"", COLORS.white, " Gillert thought."},
-        {COLORS.dialogue, "\"I finally know how it feels to have a friend.\""}
+        {COLORS.gillert, "\"Friend,\"", COLORS.white, " Gillert thought."},
+        {COLORS.gillert, "\"I finally know how it feels to have a friend.\""}
     }
 
     view.images = {

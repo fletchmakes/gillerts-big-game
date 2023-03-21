@@ -38,7 +38,7 @@ function Button:new(text, x, y, action)
     button.textX = 0
     button.textY = 0
     button.fillMode = "line"
-    button.textColor = "#FFFFFF"
+    button.textColor = COLORS.white
     button.isPressed = false
     button.disabled = false
 
@@ -90,7 +90,7 @@ function Button:update( dt )
     if (mouseX > self.x and mouseX < self.x + self.width and
         mouseY > self.y and mouseY < self.y + self.height) then
             self.fillMode = "fill"
-            self.textColor = "#615a7d"
+            self.textColor = COLORS.buttonText
 
         if (love.mouse.isDown(1) and not self.isPressed and not self.disabled) then
             self.action()
@@ -98,7 +98,7 @@ function Button:update( dt )
         end
     else
             self.fillMode = "line"
-            self.textColor = "#FFFFFF"
+            self.textColor = COLORS.white
     end
 
     if (not love.mouse.isDown(1)) then

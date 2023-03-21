@@ -35,8 +35,13 @@ local MermaidFamily = require "scenes.02_MermaidFamily"
 local ToTheSurface = require "scenes.03_ToTheSurface"
 local Neighby = require "scenes.04_Neighby"
 local SurfaceSchool = require "scenes.05_SurfaceSchool"
-local BrokenHeart = require "scenes.06_BrokenHeart"
 local MeetingCJ = require "scenes.07_MeetingCJ"
+local MeetingRyan = require "scenes.08_MeetingRyan"
+local SavingTheDay = require "scenes.09_SavingTheDay"
+local GrowingApart = require "scenes.10_GrowingApart"
+local BiologyClass = require "scenes.11_BiologyClass"
+local TheLetter = require "scenes.12_TheLetter"
+local SurpriseParty = require "scenes.13_SurpriseParty"
 local TheBigGame = require "scenes.99_TheBigGame"
 
 local AudioManager = require "components.AudioManager"
@@ -54,15 +59,20 @@ function GameView:new(rules)
         :addHeight(Plan.relative(1))
 
     gameView.scenes = {
-        -- MainMenu:init(rules, gameView),
-        -- Introduction:init(rules, gameView),
-        -- MermaidFamily:init(rules, gameView),
-        -- ToTheSurface:init(rules, gameView),
-        -- Neighby:init(rules, gameView),
-        -- SurfaceSchool:init(rules, gameView),
-        -- BrokenHeart:init(rules, gameView),
+        MainMenu:init(rules, gameView),
+        Introduction:init(rules, gameView),
+        MermaidFamily:init(rules, gameView),
+        ToTheSurface:init(rules, gameView),
+        Neighby:init(rules, gameView),
+        SurfaceSchool:init(rules, gameView),
         MeetingCJ:init(rules, gameView),
-        -- TheBigGame:init(rules, gameView)
+        MeetingRyan:init(rules, gameView),
+        SavingTheDay:init(rules, gameView),
+        GrowingApart:init(rules, gameView),
+        BiologyClass:init(rules, gameView),
+        TheLetter:init(rules, gameView),
+        SurpriseParty:init(rules, gameView),
+        TheBigGame:init(rules, gameView)
     }
     gameView.sceneIdx = 1
 

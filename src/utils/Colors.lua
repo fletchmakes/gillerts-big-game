@@ -43,11 +43,15 @@ local white = {1, 1, 1}
 local black = {0, 0, 0}
 local textBackground = colorFromHex("#000000B0")
 local dialogue = colorFromHex("#ffa696")
+local gillert = colorFromHex("#7dadfa")
+local buttonText = colorFromHex("#615a7d")
 
 return {
     colorFromHex = colorFromHex,
     white = white,
     black = black,
     textBackground = textBackground,
-    dialogue = dialogue
+    dialogue = dialogue,
+    gillert = gillert,
+    buttonText = buttonText
 }

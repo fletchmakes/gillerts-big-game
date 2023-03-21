@@ -22,36 +22,34 @@
 
 local Plan = require "libs.plan.plan"
 local Container = Plan.Container
-local MeetingCJ = Container:extend()
+local EmptyPage = Container:extend()
 
 local COLORS = require "utils.Colors"
 local Button = require "components.Button"
 
-function MeetingCJ:init(rules, parent)
+function EmptyPage:init(rules, parent)
     -- initialises all the container fields
-    local view = MeetingCJ.super.new(self, rules)
+    local view = EmptyPage.super.new(self, rules)
 
     view.offset = 0
 
     view.font = love.graphics.newFont("assets/art/WindstilChonker-Regular.ttf", 40)
 
     view.text = {
-        {COLORS.white, "The rest of Gillert's first day was somewhat better, but only slightly."},
-        {COLORS.white, "Gillert enjoyed learning in his classes, but the other students still made fun of him between periods."},
-        {COLORS.white, "He began to feel discouraged because he was still an outcast here, just like at his old school."},
-        {COLORS.white, "But in his last class of the day, things started looking up."},
-        {COLORS.white, "Gillert sat down in the back corner of his biology class, trying not to draw attention to himself."},
-        {COLORS.white, "A student rolled up next to him in an odd chair contraption that pushed itself forward on four wheels."},
-        {COLORS.dialogue, "\"I'm sorry the other students have been so mean to you,\"", COLORS.white, " she said to Gillert in a slow, somewhat muffled voice."},
-        {COLORS.gillert, "\"It's okay. I'm used to it,\"", COLORS.white, " Gillert replied.", COLORS.gillert, " \"You're the first person to say something nice to me all day.\""},
-        {COLORS.dialogue, "\"That's so sad to hear, but I'm glad I could brighten your day. I'm CJ.\""},
-        {COLORS.gillert, "\"Hi, CJ, I'm Gillert!\""},
-        {COLORS.dialogue, "\"It's good to meet you! Honestly, it's rare for me to have a friendly conversation with the students here as well.\""},
-        {COLORS.dialogue, "\"They don't bully or make fun of me, but I can tell I make them uncomfortable.\""},
-        {COLORS.dialogue, "\"They don't know how to talk to someone in a wheelchair. Plus, they have a hard time understanding what I'm saying.\""},
-        {COLORS.gillert, "\"I can understand you perfectly fine! To me, it sounds like you are talking underwater, which reminds me of home.\""},
-        {COLORS.white, "CJ smiled."},
-        {COLORS.white, "And so, Gillert was able to add another friend to his list of allies on the surface."}
+        {COLORS.white, "However, when he opened the front door, he was greeted by a loud cheer of ", COLORS.dialogue, "\"SURPRISE!\""},
+        {COLORS.white, "Gillert stood stunned, his mouth gaping open."},
+        {COLORS.white, "Blue balloons coated the entire floor, and blue streamers lined every wall."},
+        {COLORS.white, "In front of him was a table full of his favorite foods: seaweed salad, coral reef cake, and squid spaghetti."},
+        {COLORS.white, "Neighby, Neighby's parents, CJ, and Ryan stood in the living room, blowing bubbles and clapping as Gillert entered."},
+        {COLORS.white, "They were all dressed in Gillert's number 12 soccer jersey and were holding up a banner that said,"},
+        {COLORS.dialogue, "\"Good luck in the big game, Gillert! You are the best!\""},
+        {COLORS.white, "It was an underwater themed surprise party! Just for Gillert."},
+        {COLORS.white, "Tears rolled down Gillert's scales again, only this time, they were for joy."},
+        {COLORS.white, "He was wanted. He was loved."},
+        {COLORS.white, "He BELONGED."},
+        {COLORS.white, "Gillert realized these things could still be true even if there was no one else who was like him."},
+        {COLORS.white, "He was unique, but that didn't mean he had to be alone."},
+        {COLORS.white, "He tore up the letter he had written and joined the party."},
     }
 
     view.images = {
@@ -102,12 +100,6 @@ function MeetingCJ:init(rules, parent)
         -- page 14
         function()
         end,
-        -- page 15
-        function()
-        end,
-        -- page 16
-        function()
-        end,
     }
 
     view.pageIdx = 1
@@ -146,25 +138,25 @@ function MeetingCJ:init(rules, parent)
     return view
 end
 
-function MeetingCJ:changePage(offset)
+function EmptyPage:changePage(offset)
     self.pageIdx = self.pageIdx + offset
     self.pages[self.pageIdx]()
 end
 
-function MeetingCJ:setOffset(offset)
+function EmptyPage:setOffset(offset)
     self.offset = offset
     for _,button in ipairs(self.buttons) do
         button:setOffset(offset)
     end
 end
 
-function MeetingCJ:update( dt )
+function EmptyPage:update( dt )
     for _,button in ipairs(self.buttons) do
         button:update(dt)
     end
 end
 
-function MeetingCJ:draw()
+function EmptyPage:draw()
     love.graphics.push("all")
         -- images
         for idx,image in ipairs(self.images) do
@@ -187,4 +179,4 @@ function MeetingCJ:draw()
     end
 end
 
-return MeetingCJ
+return EmptyPage

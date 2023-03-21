@@ -27,6 +27,10 @@ local BrokenHeart = Container:extend()
 local COLORS = require "utils.Colors"
 local Button = require "components.Button"
 
+------------------------------------
+-----      UNIMPLEMENTED
+-------------------------------------
+
 function BrokenHeart:init(rules, parent)
     -- initialises all the container fields
     local view = BrokenHeart.super.new(self, rules)
