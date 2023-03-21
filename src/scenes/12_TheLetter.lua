@@ -22,14 +22,14 @@
 
 local Plan = require "libs.plan.plan"
 local Container = Plan.Container
-local EmptyPage = Container:extend()
+local TheLetter = Container:extend()
 
 local COLORS = require "utils.Colors"
 local Button = require "components.Button"
 
-function EmptyPage:init(rules, parent)
+function TheLetter:init(rules, parent)
     -- initialises all the container fields
-    local view = EmptyPage.super.new(self, rules)
+    local view = TheLetter.super.new(self, rules)
 
     view.offset = 0
 
@@ -118,25 +118,25 @@ function EmptyPage:init(rules, parent)
     return view
 end
 
-function EmptyPage:changePage(offset)
+function TheLetter:changePage(offset)
     self.pageIdx = self.pageIdx + offset
     self.pages[self.pageIdx]()
 end
 
-function EmptyPage:setOffset(offset)
+function TheLetter:setOffset(offset)
     self.offset = offset
     for _,button in ipairs(self.buttons) do
         button:setOffset(offset)
     end
 end
 
-function EmptyPage:update( dt )
+function TheLetter:update( dt )
     for _,button in ipairs(self.buttons) do
         button:update(dt)
     end
 end
 
-function EmptyPage:draw()
+function TheLetter:draw()
     love.graphics.push("all")
         -- images
         for idx,image in ipairs(self.images) do
@@ -159,4 +159,4 @@ function EmptyPage:draw()
     end
 end
 
-return EmptyPage
+return TheLetter

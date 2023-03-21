@@ -42,8 +42,9 @@ local GrowingApart = require "scenes.10_GrowingApart"
 local BiologyClass = require "scenes.11_BiologyClass"
 local TheLetter = require "scenes.12_TheLetter"
 local SurpriseParty = require "scenes.13_SurpriseParty"
-local TheBigGame = require "scenes.99_TheBigGame"
-
+local TheChampionship = require "scenes.14_TheChampionship"
+local TheBigGame = require "scenes.15_TheBigGame"
+local Conclusion = require "scenes.16_Conclusion"
 local AudioManager = require "components.AudioManager"
 
 function GameView:new(rules)
@@ -78,7 +79,9 @@ function GameView:new(rules)
         BiologyClass:init(rules, gameView),
         TheLetter:init(rules, gameView),
         SurpriseParty:init(rules, gameView),
-        TheBigGame:init(rules, gameView)
+        TheChampionship:init(rules, gameView),
+        TheBigGame:init(rules, gameView),
+        Conclusion:init(rules, gameView)
     }
     gameView.sceneIdx = 1
     gameView.scene = gameView.scenes[1]

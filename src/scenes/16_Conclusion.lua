@@ -22,32 +22,32 @@
 
 local Plan = require "libs.plan.plan"
 local Container = Plan.Container
-local MeetingRyan = Container:extend()
+local EmptyPage = Container:extend()
 
 local COLORS = require "utils.Colors"
 local Button = require "components.Button"
 
-function MeetingRyan:init(rules, parent)
+function EmptyPage:init(rules, parent)
     -- initialises all the container fields
-    local view = MeetingRyan.super.new(self, rules)
+    local view = EmptyPage.super.new(self, rules)
 
     view.offset = 0
 
     view.font = love.graphics.newFont("assets/art/WindstilChonker-Regular.ttf", 40)
 
     view.text = {
-        {COLORS.white, "At the end of the school day, Gillert introduced CJ to Neighby."},
-        {COLORS.white, "The three of them talked and laughed together as they headed out to the bus lane."},
-        {COLORS.white, "Just outside the school's front doors, Gillert heard students yelling."},
-        {COLORS.white, "There was a circle of six students throwing a white ball with black pentagons back and forth to each other."},
-        {COLORS.white, "In the middle of the circle, another student was shouting,", COLORS.dialogue, " \"Hey, give it back! That's not fair!\""},
-        {COLORS.white, "Gillert thought back to earlier in the day when he was being picked on."},
-        {COLORS.white, "Although the kid being bullied in front of him appeared to be a normal human teenager,"},
-        {COLORS.white, "Gillert saw a bit of himself in this student and knew he had to do something."},
+        {COLORS.white, "He did it! Gillert won the game!"},
+        {COLORS.white, "Gillert scored the most goals out of his entire team, including the winning goal."},
+        {COLORS.white, "His teammates held him up on their shoulders and chanted his name."},
+        {COLORS.white, "After the commotion died down, several of Gillert's teammates approached him."},
+        {COLORS.dialogue, "\"Hey, Gillert,\"", COLORS.white, " one of them said,", COLORS.dialogue, " \"that was some pretty epic footwork. We were all planning to go out and party. Do you want to come?\""},
+        {COLORS.gillert, "\"No thanks,\"", COLORS.white, " Gillert replied.", COLORS.gillert, " \"I'd rather celebrate with my friends who have always supported me for who I am, not for how well I play.\""},
+        {COLORS.white, "His teammates' jaws dropped in confusion and disbelief."},
+        {COLORS.white, "Gillert smiled, turned, and skipped toward the edge of the field, where his friends were waiting for him."},
     }
 
     view.images = {
-        { image=love.graphics.newImage("assets/art/school-outside.png"), traits={x=0, y=0, alpha=1} },
+        { image=love.graphics.newImage("assets/art/goal.png"), traits={x=0, y=0, alpha=1} },
     }
 
     view.pages = {
@@ -114,25 +114,25 @@ function MeetingRyan:init(rules, parent)
     return view
 end
 
-function MeetingRyan:changePage(offset)
+function EmptyPage:changePage(offset)
     self.pageIdx = self.pageIdx + offset
     self.pages[self.pageIdx]()
 end
 
-function MeetingRyan:setOffset(offset)
+function EmptyPage:setOffset(offset)
     self.offset = offset
     for _,button in ipairs(self.buttons) do
         button:setOffset(offset)
     end
 end
 
-function MeetingRyan:update( dt )
+function EmptyPage:update( dt )
     for _,button in ipairs(self.buttons) do
         button:update(dt)
     end
 end
 
-function MeetingRyan:draw()
+function EmptyPage:draw()
     love.graphics.push("all")
         -- images
         for idx,image in ipairs(self.images) do
@@ -155,4 +155,4 @@ function MeetingRyan:draw()
     end
 end
 
-return MeetingRyan
+return EmptyPage

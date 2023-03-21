@@ -55,7 +55,7 @@ function MeetingCJ:init(rules, parent)
     }
 
     view.images = {
-        -- { image=love.graphics.newImage("assets/art/water_bg.png"), traits={x=0, y=0, alpha=1} },
+        { image=love.graphics.newImage("assets/art/classroom.png"), traits={x=0, y=0, alpha=1} },
     }
 
     view.pages = {

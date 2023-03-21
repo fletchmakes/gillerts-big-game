@@ -22,32 +22,30 @@
 
 local Plan = require "libs.plan.plan"
 local Container = Plan.Container
-local MeetingRyan = Container:extend()
+local TheChampionship = Container:extend()
 
 local COLORS = require "utils.Colors"
 local Button = require "components.Button"
 
-function MeetingRyan:init(rules, parent)
+function TheChampionship:init(rules, parent)
     -- initialises all the container fields
-    local view = MeetingRyan.super.new(self, rules)
+    local view = TheChampionship.super.new(self, rules)
 
     view.offset = 0
 
     view.font = love.graphics.newFont("assets/art/WindstilChonker-Regular.ttf", 40)
 
     view.text = {
-        {COLORS.white, "At the end of the school day, Gillert introduced CJ to Neighby."},
-        {COLORS.white, "The three of them talked and laughed together as they headed out to the bus lane."},
-        {COLORS.white, "Just outside the school's front doors, Gillert heard students yelling."},
-        {COLORS.white, "There was a circle of six students throwing a white ball with black pentagons back and forth to each other."},
-        {COLORS.white, "In the middle of the circle, another student was shouting,", COLORS.dialogue, " \"Hey, give it back! That's not fair!\""},
-        {COLORS.white, "Gillert thought back to earlier in the day when he was being picked on."},
-        {COLORS.white, "Although the kid being bullied in front of him appeared to be a normal human teenager,"},
-        {COLORS.white, "Gillert saw a bit of himself in this student and knew he had to do something."},
+        {COLORS.white, "The next day, Gillert walked out onto the soccer field for the championship game."},
+        {COLORS.white, "With each step, his heart pounded faster and harder in his chest."},
+        {COLORS.white, "A wave of nervousness crashed over him."},
+        {COLORS.white, "But as he looked up at the stands and saw all of his friends cheering him on, his nerves suddenly turned to courage."},
+        {COLORS.white, "He knew he was loved and accepted no matter what."},
+        {COLORS.white, "So he was ready to play."},
     }
 
     view.images = {
-        { image=love.graphics.newImage("assets/art/school-outside.png"), traits={x=0, y=0, alpha=1} },
+        { image=love.graphics.newImage("assets/art/goal.png"), traits={x=0, y=0, alpha=1} },
     }
 
     view.pages = {
@@ -68,12 +66,6 @@ function MeetingRyan:init(rules, parent)
         function()
         end,
         -- page 6
-        function()
-        end,
-        -- page 7
-        function()
-        end,
-        -- page 8
         function()
         end,
     }
@@ -114,25 +106,25 @@ function MeetingRyan:init(rules, parent)
     return view
 end
 
-function MeetingRyan:changePage(offset)
+function TheChampionship:changePage(offset)
     self.pageIdx = self.pageIdx + offset
     self.pages[self.pageIdx]()
 end
 
-function MeetingRyan:setOffset(offset)
+function TheChampionship:setOffset(offset)
     self.offset = offset
     for _,button in ipairs(self.buttons) do
         button:setOffset(offset)
     end
 end
 
-function MeetingRyan:update( dt )
+function TheChampionship:update( dt )
     for _,button in ipairs(self.buttons) do
         button:update(dt)
     end
 end
 
-function MeetingRyan:draw()
+function TheChampionship:draw()
     love.graphics.push("all")
         -- images
         for idx,image in ipairs(self.images) do
@@ -155,4 +147,4 @@ function MeetingRyan:draw()
     end
 end
 
-return MeetingRyan
+return TheChampionship
