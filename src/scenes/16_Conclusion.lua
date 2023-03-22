@@ -49,7 +49,7 @@ function EmptyPage:init(rules, parent)
 
     view.images = {
         { image=love.graphics.newImage("assets/art/goal.png"), traits={x=0, y=0, alpha=1} },
-        { image=love.graphics.newImage("assets/art/gillert.png"), traits={x=400, y=175, alpha=1} },
+        { image=love.graphics.newImage("assets/art/gillert-joyful.png"), traits={x=400, y=175, alpha=1} },
         { image=love.graphics.newImage("assets/art/ryan.png"), traits={x=550, y=125, alpha=0} },
         { image=love.graphics.newImage("assets/art/neighby.png"), traits={x=625, y=250, alpha=0} },
         { image=love.graphics.newImage("assets/art/cj.png"), traits={x=325, y=250, alpha=0} },

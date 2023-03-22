@@ -49,13 +49,13 @@ function TheLetter:init(rules, parent)
 
     view.images = {
         { image=love.graphics.newImage("assets/art/park.png"), traits={x=0, y=0, alpha=1} },
-        { image=love.graphics.newImage("assets/art/gillert-concern.png"), traits={x=-100, y=175, alpha=0} },
+        { image=love.graphics.newImage("assets/art/gillert-cry.png"), traits={x=-100, y=175, alpha=0} },
     }
 
     view.pages = {
         -- page 1
         function() 
-            parent.flux.to(view.images[2].traits, 1, { x=400, alpha=1 }):ease("quadinout")
+            parent.flux.to(view.images[2].traits, 1, { x=350, alpha=1 }):ease("quadinout")
         end,
         -- page 2
         function()
