@@ -91,7 +91,7 @@ function GameView:new(rules)
     gameView:addChild(gameView.scene)
 
     gameView.sceneOffset = 0
-    gameView.volume = 1
+    gameView.volume = 0.3
 
     return gameView
 end
@@ -183,7 +183,7 @@ function GameView:lowerVolume()
 end
 
 function GameView:raiseVolume()
-    self.flux.to(self, 1, {volume=1})
+    self.flux.to(self, 1, {volume=0.3})
         :ease("quadinout")
         :onupdate(function()
             self.audioManager:setVolume(self.volume)
@@ -198,6 +198,7 @@ function GameView:update( dt )
     end
 
     self.scene:update(dt)
+    self.audioManager:update(dt)
 end
 
 function GameView:draw()

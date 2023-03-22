@@ -58,18 +58,22 @@ function SurfaceSchool:init(rules, parent)
     view.pages = {
         -- page 1
         function() 
+            parent.audioManager:startCrowd()
         end,
         -- page 2
         function()
             parent:raiseVolume()
+            parent.audioManager:startCrowd()
         end,
         -- page 3
         function()
             parent:lowerVolume()
+            parent.audioManager:stopCrowd()
         end,
         -- page 4
         function()
             parent:raiseVolume()
+            parent.audioManager:startCrowd()
             parent.flux.to(view.images[6].traits, 1, {x=800, alpha=0})
         end,
         -- page 5
@@ -88,8 +92,7 @@ function SurfaceSchool:init(rules, parent)
         function()
             parent.flux.to(view.images[3].traits, 1, {alpha=0})
             parent.flux.to(view.images[5].traits, 1, {alpha=1})
-            -- change the music
-            parent.audioManager:setTrack(1)
+            parent.audioManager:startCrowd()
         end
     }
 

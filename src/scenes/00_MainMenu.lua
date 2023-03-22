@@ -34,13 +34,9 @@ function MainMenu:init(rules, parent)
 
     view.offset = 0
 
-    view.font = love.graphics.newFont("assets/art/WindstilChonker-Regular.ttf", 90)
     view.littleFont = love.graphics.newFont("assets/art/WindstilChonker-Regular.ttf", 30)
-    view.bgImage = love.graphics.newImage("assets/art/classroom.png")
-
-    view.title = "Gillert's Big Game"
-    view.titleX = 0
-    view.titleY = 0
+    view.bgImage = love.graphics.newImage("assets/art/goal.png")
+    view.header = love.graphics.newImage("assets/art/header.png")
 
     local playButtonAction = function()
         parent:nextScene()
@@ -48,7 +44,7 @@ function MainMenu:init(rules, parent)
 
     local playButton = Button:new("play", 0, 0, playButtonAction)
     local buttonX = (love.graphics.getWidth() / 2) - (playButton:getWidth() / 2)
-    playButton:setPosition(buttonX, 400)
+    playButton:setPosition(buttonX, 350)
 
     view.buttons = {
         playButton
@@ -66,9 +62,6 @@ function MainMenu:setOffset(offset)
 end
 
 function MainMenu:update( dt )
-    self.titleX = (love.graphics.getWidth() / 2) - (self.font:getWidth(self.title) / 2)
-    self.titleY = (love.graphics.getHeight() / 2) - (self.font:getHeight() / 2)
-
     for _,button in ipairs(self.buttons) do
         button:update(dt)
     end
@@ -79,14 +72,10 @@ function MainMenu:draw()
         -- bg image
         love.graphics.draw(self.bgImage, self.offset)
 
-        -- text bg
-        love.graphics.setColor(COLORS.textBackground)
-        love.graphics.rectangle("fill", self.offset, self.titleY - 10, love.graphics.getWidth(), self.font:getHeight() + 10)
-
-        -- text
-        love.graphics.setFont(self.font)
-        love.graphics.setColor(COLORS.white)
-        love.graphics.print(self.title, self.titleX + self.offset, self.titleY)
+        -- header image
+        local headerX = (love.graphics.getWidth() / 2) - (self.header:getWidth() / 2)
+        local headerY = (love.graphics.getHeight() / 2) - (self.header:getHeight() / 2) - 70
+        love.graphics.draw(self.header, headerX + self.offset, headerY)
 
         -- credits
         love.graphics.setFont(self.littleFont)

@@ -63,6 +63,7 @@ function MeetingCJ:init(rules, parent)
     view.pages = {
         -- page 1
         function() 
+            parent.audioManager:stopCrowd()
         end,
         -- page 2
         function()

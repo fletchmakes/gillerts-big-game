@@ -82,6 +82,7 @@ function TheLetter:init(rules, parent)
         end,
         -- page 9
         function()
+            parent.audioManager:setTrack(1)
         end,
     }
 

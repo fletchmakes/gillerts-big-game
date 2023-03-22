@@ -103,6 +103,7 @@ function Neighby:init(rules, parent)
         end,
         -- page 9
         function()
+            parent.audioManager:stopCrowd()
         end
     }
 
