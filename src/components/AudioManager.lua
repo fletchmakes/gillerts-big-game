@@ -37,7 +37,7 @@ function AudioManager:new()
     }
 
     manager.sfx = {
-        crowd = love.audio.newSource("assets/music/CrowdLoud.ogg", "stream")
+        crowd = love.audio.newSource("assets/music/Crowd.ogg", "stream")
     }
 
     manager.trackIdx = 1
