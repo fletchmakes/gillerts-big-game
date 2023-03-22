@@ -57,9 +57,10 @@ function GrowingApart:init(rules, parent)
     view.images = {
         { image=love.graphics.newImage("assets/art/goal.png"), traits={x=0, y=0, alpha=1} },
         { image=love.graphics.newImage("assets/art/neighby.png"), traits={x=400, y=75, alpha=1} },
-        { image=love.graphics.newImage("assets/art/gillert.png"), traits={x=250, y=175, alpha=1} },
+        { image=love.graphics.newImage("assets/art/gillert-joyful.png"), traits={x=250, y=175, alpha=1} },
         { image=love.graphics.newImage("assets/art/ryan.png"), traits={x=550, y=50, alpha=1} },
         { image=love.graphics.newImage("assets/art/cj.png"), traits={x=500, y=175, alpha=1} },
+        { image=love.graphics.newImage("assets/art/gillert-upset.png"), traits={x=350, y=175, alpha=0} },
     }
 
     view.pages = {
@@ -91,14 +92,18 @@ function GrowingApart:init(rules, parent)
         -- page 9
         function()
             parent.flux.to(view.images[2].traits, 1, { alpha=1 }):ease("quadinout")
+            parent.flux.to(view.images[3].traits, 1, { alpha=1 }):ease("quadinout")
             parent.flux.to(view.images[4].traits, 1, { alpha=1 }):ease("quadinout")
             parent.flux.to(view.images[5].traits, 1, { alpha=1 }):ease("quadinout")
+            parent.flux.to(view.images[6].traits, 1, { alpha=0 }):ease("quadinout")
         end,
         -- page 10
         function()
             parent.flux.to(view.images[2].traits, 1, { alpha=0 }):ease("quadinout")
+            parent.flux.to(view.images[3].traits, 1, { alpha=0 }):ease("quadinout")
             parent.flux.to(view.images[4].traits, 1, { alpha=0 }):ease("quadinout")
             parent.flux.to(view.images[5].traits, 1, { alpha=0 }):ease("quadinout")
+            parent.flux.to(view.images[6].traits, 1, { alpha=1 }):ease("quadinout")
         end,
         -- page 11
         function()

@@ -67,61 +67,66 @@ function SavingTheDay:init(rules, parent)
         { image=love.graphics.newImage("assets/art/school-outside.png"), traits={x=0, y=0, alpha=1} },
         { image=love.graphics.newImage("assets/art/gillert.png"), traits={x=100, y=175, alpha=1} },
         { image=love.graphics.newImage("assets/art/ryan.png"), traits={x=700, y=100, alpha=1} },
-        { image=love.graphics.newImage("assets/art/ball.png"), traits={x=250, y=200, alpha=1}}
+        { image=love.graphics.newImage("assets/art/beeg-ball.png"), traits={x=250, y=200, alpha=1}},
+        { image=love.graphics.newImage("assets/art/ryan-ball.png"), traits={x=700, y=100, alpha=0} },
     }
 
     view.pages = {
         -- page 1
         function() 
             parent.flux.to(view.images[2].traits, 1, {x=200})
-            parent.flux.to(view.images[4].traits, 1, {x=500, y=-100})
+            parent.flux.to(view.images[4].traits, 1, {x=500, y=-100, alpha=1})
         end,
         -- page 2
         function()
+            parent.flux.to(view.images[3].traits, 1, {alpha=1})
+            parent.flux.to(view.images[5].traits, 1, {alpha=0})
         end,
         -- page 3
         function()
-            parent.flux.to(view.images[4].traits, 1, {x=700, y=500})
+            parent.flux.to(view.images[4].traits, 1, {x=700, y=300, alpha=0})
+            parent.flux.to(view.images[3].traits, 1, {alpha=0})
+            parent.flux.to(view.images[5].traits, 1, {alpha=1})
         end,
         -- page 4
         function()
             parent.flux.to(view.images[2].traits, 1, {alpha=1})
-            parent.flux.to(view.images[3].traits, 1, {alpha=0.3})
+            parent.flux.to(view.images[5].traits, 1, {alpha=0.3})
         end,
         -- page 5
         function()
             parent.flux.to(view.images[2].traits, 1, {alpha=0.3})
-            parent.flux.to(view.images[3].traits, 1, {alpha=1})
+            parent.flux.to(view.images[5].traits, 1, {alpha=1})
         end,
         -- page 6
         function()
             parent.flux.to(view.images[2].traits, 1, {alpha=1})
-            parent.flux.to(view.images[3].traits, 1, {alpha=0.3})
+            parent.flux.to(view.images[5].traits, 1, {alpha=0.3})
         end,
         -- page 7
         function()
             parent.flux.to(view.images[2].traits, 1, {alpha=0.3})
-            parent.flux.to(view.images[3].traits, 1, {alpha=1})
+            parent.flux.to(view.images[5].traits, 1, {alpha=1})
         end,
         -- page 8
         function()
             parent.flux.to(view.images[2].traits, 1, {alpha=1})
-            parent.flux.to(view.images[3].traits, 1, {alpha=0.3})
+            parent.flux.to(view.images[5].traits, 1, {alpha=0.3})
         end,
         -- page 9
         function()
             parent.flux.to(view.images[2].traits, 1, {alpha=0.3})
-            parent.flux.to(view.images[3].traits, 1, {alpha=1})
+            parent.flux.to(view.images[5].traits, 1, {alpha=1})
         end,
         -- page 10
         function()
             parent.flux.to(view.images[2].traits, 1, {alpha=1})
-            parent.flux.to(view.images[3].traits, 1, {alpha=0.3})
+            parent.flux.to(view.images[5].traits, 1, {alpha=0.3})
         end,
         -- page 11
         function()
             parent.flux.to(view.images[2].traits, 1, {alpha=0.3})
-            parent.flux.to(view.images[3].traits, 1, {alpha=1})
+            parent.flux.to(view.images[5].traits, 1, {alpha=1})
         end,
         -- page 12
         function()
@@ -132,62 +137,62 @@ function SavingTheDay:init(rules, parent)
         -- page 14
         function()
             parent.flux.to(view.images[2].traits, 1, {alpha=0.3})
-            parent.flux.to(view.images[3].traits, 1, {alpha=1})
+            parent.flux.to(view.images[5].traits, 1, {alpha=1})
         end,
         -- page 15
         function()
             parent.flux.to(view.images[2].traits, 1, {alpha=1})
-            parent.flux.to(view.images[3].traits, 1, {alpha=0.3})
+            parent.flux.to(view.images[5].traits, 1, {alpha=0.3})
         end,
         -- page 16
         function()
             parent.flux.to(view.images[2].traits, 1, {alpha=0.3})
-            parent.flux.to(view.images[3].traits, 1, {alpha=1})
+            parent.flux.to(view.images[5].traits, 1, {alpha=1})
         end,
         -- page 17
         function()
             parent.flux.to(view.images[2].traits, 1, {alpha=0.3})
-            parent.flux.to(view.images[3].traits, 1, {alpha=1})
+            parent.flux.to(view.images[5].traits, 1, {alpha=1})
         end,
         -- page 18
         function()
             parent.flux.to(view.images[2].traits, 1, {alpha=1})
-            parent.flux.to(view.images[3].traits, 1, {alpha=0.3})
+            parent.flux.to(view.images[5].traits, 1, {alpha=0.3})
         end,
         -- page 19
         function()
             parent.flux.to(view.images[2].traits, 1, {alpha=0.3})
-            parent.flux.to(view.images[3].traits, 1, {alpha=1})
+            parent.flux.to(view.images[5].traits, 1, {alpha=1})
         end,
         -- page 20
         function()
             parent.flux.to(view.images[2].traits, 1, {alpha=1})
-            parent.flux.to(view.images[3].traits, 1, {alpha=0.3})
+            parent.flux.to(view.images[5].traits, 1, {alpha=0.3})
         end,
         -- page 21
         function()
             parent.flux.to(view.images[2].traits, 1, {alpha=1})
-            parent.flux.to(view.images[3].traits, 1, {alpha=0.3})
+            parent.flux.to(view.images[5].traits, 1, {alpha=0.3})
         end,
         -- page 22
         function()
             parent.flux.to(view.images[2].traits, 1, {alpha=0.3})
-            parent.flux.to(view.images[3].traits, 1, {alpha=1})
+            parent.flux.to(view.images[5].traits, 1, {alpha=1})
         end,
         -- page 23
         function()
             parent.flux.to(view.images[2].traits, 1, {alpha=0.3})
-            parent.flux.to(view.images[3].traits, 1, {alpha=1})
+            parent.flux.to(view.images[5].traits, 1, {alpha=1})
         end,
         -- page 24
         function()
             parent.flux.to(view.images[2].traits, 1, {alpha=1})
-            parent.flux.to(view.images[3].traits, 1, {alpha=0.3})
+            parent.flux.to(view.images[5].traits, 1, {alpha=0.3})
         end,
         -- page 25
         function()
             parent.flux.to(view.images[2].traits, 1, {alpha=1})
-            parent.flux.to(view.images[3].traits, 1, {alpha=0.3})
+            parent.flux.to(view.images[5].traits, 1, {alpha=0.3})
         end,
     }
 
@@ -250,11 +255,7 @@ function SavingTheDay:draw()
         -- images
         for idx,image in ipairs(self.images) do
             love.graphics.setColor({1, 1, 1, image.traits.alpha})
-            if (idx == 4) then
-                love.graphics.draw(image.image, image.traits.x + self.offset, image.traits.y, 0, 3)
-            else
-                love.graphics.draw(image.image, image.traits.x + self.offset, image.traits.y)
-            end
+            love.graphics.draw(image.image, image.traits.x + self.offset, image.traits.y)
         end
 
         -- text bg

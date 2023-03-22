@@ -54,7 +54,7 @@ function SurpriseParty:init(rules, parent)
 
     view.images = {
         { image=love.graphics.newImage("assets/art/party.png"), traits={x=0, y=0, alpha=1} },
-        { image=love.graphics.newImage("assets/art/gillert.png"), traits={x=150, y=175, alpha=1} },
+        { image=love.graphics.newImage("assets/art/gillert-happy-tears.png"), traits={x=150, y=175, alpha=1} },
         { image=love.graphics.newImage("assets/art/neighbydad_1.png"), traits={x=550, y=150, alpha=0} },
         { image=love.graphics.newImage("assets/art/dad2.png"), traits={x=700, y=150, alpha=0} },
         { image=love.graphics.newImage("assets/art/neighby.png"), traits={x=725, y=250, alpha=0} },

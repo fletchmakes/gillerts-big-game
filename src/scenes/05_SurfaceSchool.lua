@@ -52,6 +52,7 @@ function SurfaceSchool:init(rules, parent)
         { image=love.graphics.newImage("assets/art/gillert-upset.png"), traits={x=250, y=200, alpha=1} },
         { image=love.graphics.newImage("assets/art/neighby.png"), traits={x=550, y=150, alpha=1} },
         { image=love.graphics.newImage("assets/art/gillert-cry.png"), traits={x=250, y=200, alpha=0} },
+        { image=love.graphics.newImage("assets/art/meanie1.png"), traits={x=800, y=200, alpha=0} },
     }
 
     view.pages = {
@@ -69,13 +70,16 @@ function SurfaceSchool:init(rules, parent)
         -- page 4
         function()
             parent:raiseVolume()
+            parent.flux.to(view.images[6].traits, 1, {x=800, alpha=0})
         end,
         -- page 5
         function()
             parent.flux.to(view.images[2].traits, 1, {alpha=1})
+            parent.flux.to(view.images[6].traits, 1, {x=700, alpha=1})
         end,
         -- page 6
         function()
+            parent.flux.to(view.images[6].traits, 1, {x=800, alpha=0})
             parent.flux.to(view.images[2].traits, 1, {alpha=0})
             parent.flux.to(view.images[3].traits, 1, {alpha=1})
             parent.flux.to(view.images[5].traits, 1, {alpha=0})
